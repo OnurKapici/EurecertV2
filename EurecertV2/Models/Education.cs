@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace EurecertV2.Models
 {
-    public class Consultancy
+    public class Education
     {
-        public Consultancy()
+        public Education()
         {
             CreateDate = DateTime.Now;
             UpdateDate = DateTime.Now;
@@ -23,24 +23,29 @@ namespace EurecertV2.Models
         [StringLength(200)]
         [Display(Name = "Rapor Kodu")]
         public string ReportCode { get; set; }
-        [Display(Name = "Başvuru Yöntemi")]
-        public int? ApplicationMethodId { get; set; }
-        [ForeignKey("ApplicationMethodId")]
-        [Display(Name = "Başvuru Yöntemi")]
-        public virtual ApplicationMethod ApplicationMethod { get; set; }
-        [Display(Name = "Sunum Yapıldı Mı?")]
-        public bool IsPresentationDone { get; set; }
-        [Display(Name = "Sunum Tarihi")]
-        [DataType("datetime-local")]
-        public DateTime? PresentationDate { get; set; }
-        [StringLength(200)]
-        [Display(Name = "Sunum Dosyası")]
-        public string PresentationFile { get; set; }
+        [Display(Name = "Tanıtım Yapıldı Mı?")]
+        public bool IsMarketingDone { get; set; }
         [Display(Name = "Tanıtım Yöntemi")]
         public int? MarketingMethodId { get; set; }
         [ForeignKey("MarketingMethodId")]
         [Display(Name = "Tanıtım Yöntemi")]
         public virtual MarketingMethod MarketingMethod { get; set; }
+        [Display(Name = "Tanıtım Tarihi")]
+        [DataType("datetime-local")]
+        public DateTime? MarketingDate { get; set; }
+        [Display(Name = "Başvuru Yöntemi")]
+        public int? ApplicationMethodId { get; set; }
+        [Display(Name = "Başvuru Yöntemi")]
+        [ForeignKey("ApplicationMethodId")]
+        public virtual ApplicationMethod ApplicationMethod { get; set; }
+        [Display(Name = "Eğitim Tipi")]
+        public int? EducationCategoryId { get; set; }
+        [ForeignKey("EducationCategoryId")]
+        [Display(Name = "Eğitim Tipi")]
+        public virtual EducationCategory EducationCategory { get; set; }
+        [StringLength(200)]
+        [Display(Name = "Eğitmen")]
+        public string Teacher { get; set; }
         [Display(Name = "Teklif Edilen Bütçe")]
         public decimal? ProposedBudget { get; set; }
         [Display(Name = "Teklif Tarihi")]
@@ -49,28 +54,18 @@ namespace EurecertV2.Models
         [Display(Name = "Kurumun Talepleri")]
         [DataType(DataType.MultilineText)]
         public string CompanyRequests { get; set; }
-        [Display(Name = "Danışmanlık Başlangıç Tarihi")]
+        [Display(Name = "Eğitim Başlangıç Tarihi")]
         [DataType("datetime-local")]
-        public DateTime? ConsultancyStartDate { get; set; }
-        [Display(Name = "Danışmanlık Bitiş Tarihi")]
+        public DateTime? EducationStartDate { get; set; }
+        [Display(Name = "Eğitim Bitiş Tarihi")]
         [DataType("datetime-local")]
-        public DateTime? ConsultancyFinishDate { get; set; }
-        [Display(Name = "Rapor Oluşturma Tarihi")]
-        [DataType("datetime-local")]
-        public DateTime? ReportCreateDate { get; set; }
-        [Display(Name = "Rapor Oluşturan Kişi")]
-        public string ReportCreatedById { get; set; }
-        [ForeignKey("ReportCreatedById")]
-        [Display(Name = "Rapor Oluşturan Kişi")]
-        public virtual ApplicationUser ReportCreatedBy { get; set; }
-        [Display(Name = "Raporun Gönderilme Tarihi")]
-        [DataType("datetime-local")]
-        public DateTime? ReportSendDate { get; set; }
-        [Display(Name = "Danışman Notları")]
+        public DateTime? EducationFinishDate { get; set; }
+        [StringLength(200)]
+        [Display(Name = "Eğitim Yeri")]
+        public string EducationLocation { get; set; }
+        [Display(Name = "Eğitmen Notları")]
         [DataType(DataType.MultilineText)]
-        public string ConsultantNotes { get; set; }
-        [Display(Name = "Hizmet Alanları")]
-        public virtual ICollection<ConsultancyServiceField> ConsultancyServiceFields { get; set; }
+        public string TeacherNotes { get; set; }
         [Display(Name = "Oluşturulma Tarihi")]
         public DateTime CreateDate { get; set; }
         [StringLength(200)]
