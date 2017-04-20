@@ -1,0 +1,165 @@
+﻿@model EurecertV2.Models.Consultancy
+
+@{
+    ViewData["Title"] = "Oluştur";
+}
+
+<h2>Oluştur</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Danışmanlık</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="CompanyId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="CompanyId" class ="form-control" asp-items="ViewBag.CompanyId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReportCode" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ReportCode" class="form-control" />
+                <span asp-validation-for="ReportCode" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ApplicationMethodId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="ApplicationMethodId" class ="form-control" asp-items="ViewBag.ApplicationMethodId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input asp-for="IsPresentationDone" />
+                    <label asp-for="IsPresentationDone"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PresentationDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PresentationDate" class="form-control" />
+                <span asp-validation-for="PresentationDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PresentationFile" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PresentationFile" class="form-control" />
+                <span asp-validation-for="PresentationFile" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="MarketingMethodId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="MarketingMethodId" class ="form-control" asp-items="ViewBag.MarketingMethodId"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ProposedBudget" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ProposedBudget" class="form-control" />
+                <span asp-validation-for="ProposedBudget" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ProposalDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ProposalDate" class="form-control" />
+                <span asp-validation-for="ProposalDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CompanyRequests" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea asp-for="CompanyRequests" class="form-control"></textarea>
+                <span asp-validation-for="CompanyRequests" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ConsultancyStartDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ConsultancyStartDate" class="form-control" />
+                <span asp-validation-for="ConsultancyStartDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ConsultancyFinishDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ConsultancyFinishDate" class="form-control" />
+                <span asp-validation-for="ConsultancyFinishDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReportCreateDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ReportCreateDate" class="form-control" />
+                <span asp-validation-for="ReportCreateDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReportCreatedById" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="ReportCreatedById" class ="form-control" asp-items="ViewBag.ReportCreatedById"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReportSendDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ReportSendDate" class="form-control" />
+                <span asp-validation-for="ReportSendDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ConsultantNotes" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ConsultantNotes" class="form-control" />
+                <span asp-validation-for="ConsultantNotes" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CreateDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CreateDate" readonly class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CreatedBy" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CreatedBy" readonly class="form-control" />
+                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="UpdateDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="UpdateDate" readonly class="form-control" />
+                <span asp-validation-for="UpdateDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="UpdatedBy" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="UpdatedBy" readonly class="form-control" />
+                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Oluştur" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Listeye Geri Dön</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

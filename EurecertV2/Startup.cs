@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using EurecertV2.Data;
 using EurecertV2.Models;
 using EurecertV2.Services;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 namespace EurecertV2
 {
@@ -59,7 +61,18 @@ namespace EurecertV2
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(new CultureInfo("tr-TR")),
+                SupportedCultures = new List<CultureInfo>
+                {
+                    new CultureInfo("tr-TR")
+                },
+                SupportedUICultures = new List<CultureInfo>
+                {
+                    new CultureInfo("tr-TR")
+                }
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

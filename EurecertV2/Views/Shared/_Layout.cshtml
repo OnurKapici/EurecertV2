@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - EurecertV2</title>
+    <title>@ViewData["Title"] - EURECERT</title>
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -16,6 +16,8 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" />
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body>
@@ -28,13 +30,33 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">EurecertV2</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">EURECERT</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Companies" asp-action="Index">Kurumlar</a></li>
+                    <li><a asp-area="" asp-controller="Certifications" asp-action="Index">Belgelendirme</a></li>
+                    <li><a asp-area="" asp-controller="Consultancies" asp-action="Index">Danışmanlık</a></li>
+                    <li><a asp-area="" asp-controller="Educations" asp-action="Index">Eğitim</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+                            Araçlar
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-area="" asp-controller="ApplicationUsers" asp-action="Index">Kullanıcılar</a></li>
+                            <li><a asp-area="" asp-controller="ApplicationMethods" asp-action="Index">Başvuru Yöntemleri</a></li>
+                            <li><a asp-area="" asp-controller="CertificationResults" asp-action="Index">Belgelendirme Sonuçları</a></li>
+                            <li><a asp-area="" asp-controller="Cities" asp-action="Index">Şehirler</a></li>
+                            <li><a asp-area="" asp-controller="Countries" asp-action="Index">Ülkeler</a></li>
+                            <li><a asp-area="" asp-controller="CompanyFunctions" asp-action="Index">Kurum İşlevleri</a></li>
+                            <li><a asp-area="" asp-controller="EducationCategories" asp-action="Index">Eğitim Tipleri</a></li>
+                            <li><a asp-area="" asp-controller="MarketingMethods" asp-action="Index">Tanıtım Yöntemleri</a></li>
+                            <li><a asp-area="" asp-controller="ServiceFields" asp-action="Index">Hizmet Alanları</a></li>
+                            <li><a asp-area="" asp-controller="Services" asp-action="Index">Hizmetler</a></li>
+                            <li><a asp-area="" asp-controller="Sources" asp-action="Index">Haberdar Olma Şekilleri</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -68,7 +90,18 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#tblRecords').DataTable({
+                "responsive": true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Turkish.json"
+                }
+            });
+        });
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

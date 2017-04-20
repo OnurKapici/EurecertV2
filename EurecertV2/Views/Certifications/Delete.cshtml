@@ -1,0 +1,228 @@
+﻿@model EurecertV2.Models.Certification
+
+@{
+    ViewData["Title"] = "Sil";
+}
+
+<h2>Sil</h2>
+
+<h3>Silmek istediğinize emin misiniz?</h3>
+<div>
+    <h4>Belgelendirme</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <dt>
+                @Html.DisplayNameFor(model => model.ReportCode)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ReportCode)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ImprintCode)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ImprintCode)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.InspectionDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.InspectionDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsPresentationDone)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.IsPresentationDone)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PresentationDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PresentationDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstContactDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstContactDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstInspectionDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstInspectionDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApproveDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApproveDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DataSendDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DataSendDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ReportReturnDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ReportReturnDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ReportPreparedBy)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ReportPreparedBy)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.InspectionReport)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.InspectionReport)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ReportRecievedDateByCompany)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ReportRecievedDateByCompany)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CompanyAnswerToReport)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CompanyAnswerToReport)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDateForMissings)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.StartDateForMissings)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FinishDateForMissings)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FinishDateForMissings)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LastInspectionDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastInspectionDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.QualityCertificateDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.QualityCertificateDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.QualityCertificateEndDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.QualityCertificateEndDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CertificationInputsCompleteDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CertificationInputsCompleteDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.InspectorNotes)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.InspectorNotes)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProposedBudget)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProposedBudget)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.InspectionFile)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.InspectionFile)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreateDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreatedBy)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdateDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UpdateDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdatedBy)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UpdatedBy)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationMethod)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationMethod.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CertificationInputsUser)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CertificationInputsUser.Id)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CertificationResult)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CertificationResult.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Company)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Company.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstContactPerson)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstContactPerson.Id)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.InspectorPerson)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.InspectorPerson.Id)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MarketingMethod)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MarketingMethod.Name)
+            </dd>
+</dl>
+    
+    
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" /> |
+            <a asp-action="Index">Listeye Geri Dön</a>
+        </div>
+    </form>
+</div>

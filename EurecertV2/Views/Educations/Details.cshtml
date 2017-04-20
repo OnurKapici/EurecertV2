@@ -1,0 +1,132 @@
+﻿@model EurecertV2.Models.Education
+
+@{
+    ViewData["Title"] = "Ayrıntılar";
+}
+
+<h2>Ayrıntılar</h2>
+
+<div>
+    <h4>Eğitim</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReportCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReportCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsMarketingDone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsMarketingDone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MarketingDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MarketingDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Teacher)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Teacher)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProposedBudget)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProposedBudget)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProposalDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProposalDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyRequests)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompanyRequests)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EducationStartDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EducationStartDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EducationFinishDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EducationFinishDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EducationLocation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EducationLocation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TeacherNotes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TeacherNotes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpdateDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationMethod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationMethod.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Company)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Company.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EducationCategory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EducationCategory.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MarketingMethod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MarketingMethod.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a> |
+    <a asp-action="Index">Listeye Geri Dön</a>
+</div>

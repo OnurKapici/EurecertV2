@@ -1,0 +1,149 @@
+﻿@model IEnumerable<EurecertV2.Models.Consultancy>
+
+@{
+    ViewData["Title"] = "Danışmanlıklar";
+}
+
+<h2>Danışmanlıklar</h2>
+
+<p>
+    <a asp-action="Create">Yeni Oluştur</a>
+</p>
+<table id="tblRecords" class="table table-striped table-hover">
+    <thead>
+        <tr>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ReportCode)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.IsPresentationDone)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.PresentationDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.PresentationFile)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ProposedBudget)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ProposalDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.CompanyRequests)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ConsultancyStartDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ConsultancyFinishDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ReportCreateDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ReportSendDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ConsultantNotes)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.CreateDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.UpdateDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.UpdatedBy)
+                </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.ApplicationMethod)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.MarketingMethod)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.ReportCreatedBy)
+            </th>
+            <th data-orderable="false" class="all">Eylemler</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPresentationDone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PresentationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PresentationFile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProposedBudget)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProposalDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyRequests)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsultancyStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsultancyFinishDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportCreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportSendDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsultantNotes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationMethod.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MarketingMethod.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportCreatedBy.FullName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Ayrıntılar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

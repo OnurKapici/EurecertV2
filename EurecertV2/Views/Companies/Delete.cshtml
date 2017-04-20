@@ -1,0 +1,150 @@
+﻿@model EurecertV2.Models.Company
+
+@{
+    ViewData["Title"] = "Sil";
+}
+
+<h2>Sil</h2>
+
+<h3>Silmek istediğinize emin misiniz?</h3>
+<div>
+    <h4>Kurum</h4>
+    <hr />
+    <form asp-action="Delete">
+        <dl class="dl-horizontal">
+            <input type="hidden" asp-for="Id" />
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Website)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Website)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProposalAbstract)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProposalAbstract)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProposalFile)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProposalFile)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProposalResult)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProposalResult)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DownPayment)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DownPayment)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TotalAmount)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CompanyRequests)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CompanyRequests)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.VisitCount)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.VisitCount)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreateDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreatedBy)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdateDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UpdateDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdatedBy)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UpdatedBy)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.City.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CompanyFunction)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CompanyFunction.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Country.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.SalesPerson)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SalesPerson.Id)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Source)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Source.Name)
+            </dd>
+        </dl>
+
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" /> |
+            <a asp-action="Index">Listeye Geri Dön</a>
+        </div>
+    </form>
+</div>

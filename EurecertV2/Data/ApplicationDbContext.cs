@@ -65,5 +65,7 @@ namespace EurecertV2.Data
                 .WithMany(mu => mu.CompanyServices)
                 .HasForeignKey(f => f.ServiceId).OnDelete(DeleteBehavior.Restrict);
         }
+
+        public DbSet<EurecertV2.Models.ApplicationUser> ApplicationUser { get; set; }
     }
 }

@@ -1,0 +1,176 @@
+﻿@model EurecertV2.Models.Company
+
+@{
+    ViewData["Title"] = "Düzenle";
+}
+
+<h2>Düzenle</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>Kurum</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CompanyFunctionId" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="CompanyFunctionId" class="form-control" asp-items="ViewBag.CompanyFunctionId"></select>
+                <span asp-validation-for="CompanyFunctionId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CountryId" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="CountryId" class="form-control" asp-items="ViewBag.CountryId"></select>
+                <span asp-validation-for="CountryId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CityId" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId"></select>
+                <span asp-validation-for="CityId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Address" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea asp-for="Address" class="form-control"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Phone" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Website" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Website" class="form-control" />
+                <span asp-validation-for="Website" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="SourceId" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="SourceId" class="form-control" asp-items="ViewBag.SourceId"></select>
+                <span asp-validation-for="SourceId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="SalesPersonId" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="SalesPersonId" class="form-control" asp-items="ViewBag.SalesPersonId"></select>
+                <span asp-validation-for="SalesPersonId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ProposalAbstract" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea asp-for="ProposalAbstract" class="form-control"></textarea>
+                <span asp-validation-for="ProposalAbstract" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ProposalFile" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ProposalFile" class="form-control" />
+                <span asp-validation-for="ProposalFile" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ProposalResult" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea asp-for="ProposalResult" class="form-control"></textarea>
+                <span asp-validation-for="ProposalResult" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="DownPayment" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="DownPayment" class="form-control" />
+                <span asp-validation-for="DownPayment" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="TotalAmount" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="TotalAmount" class="form-control" />
+                <span asp-validation-for="TotalAmount" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CompanyRequests" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea asp-for="CompanyRequests" class="form-control"></textarea>
+                <span asp-validation-for="CompanyRequests" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="VisitCount" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="VisitCount" class="form-control" />
+                <span asp-validation-for="VisitCount" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CreateDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CreateDate" readonly class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CreatedBy" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CreatedBy" readonly class="form-control" />
+                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="UpdateDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="UpdateDate" readonly class="form-control" />
+                <span asp-validation-for="UpdateDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="UpdatedBy" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="UpdatedBy" readonly class="form-control" />
+                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Kaydet" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Listeye Geri Dön</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,233 @@
+﻿@model IEnumerable<EurecertV2.Models.Certification>
+
+@{
+    ViewData["Title"] = "Belgelendirmeler";
+}
+
+<h2>Belgelendirmeler</h2>
+
+<p>
+    <a asp-action="Create">Yeni Oluştur</a>
+</p>
+<table id="tblRecords" class="table table-striped table-hover">
+    <thead>
+        <tr>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ReportCode)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ImprintCode)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.InspectionDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.IsPresentationDone)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.PresentationDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.FirstContactDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.FirstInspectionDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ApproveDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.DataSendDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ReportReturnDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ReportPreparedBy)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.InspectionReport)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ReportRecievedDateByCompany)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.CompanyAnswerToReport)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.StartDateForMissings)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.FinishDateForMissings)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.LastInspectionDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.QualityCertificateDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.QualityCertificateEndDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.CertificationInputsCompleteDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.InspectorNotes)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ProposedBudget)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.InspectionFile)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.CreateDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.UpdateDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.UpdatedBy)
+                </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.ApplicationMethod)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.CertificationInputsUser)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.CertificationResult)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.FirstContactPerson)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.InspectorPerson)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.MarketingMethod)
+            </th>
+            <th data-orderable="false" class="all">Eylemler</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImprintCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InspectionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPresentationDone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PresentationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstContactDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstInspectionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApproveDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataSendDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportReturnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportPreparedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InspectionReport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportRecievedDateByCompany)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyAnswerToReport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDateForMissings)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinishDateForMissings)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastInspectionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QualityCertificateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QualityCertificateEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CertificationInputsCompleteDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InspectorNotes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProposedBudget)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InspectionFile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationMethod.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CertificationInputsUser.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CertificationResult.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstContactPerson.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InspectorPerson.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MarketingMethod.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Ayrıntılar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

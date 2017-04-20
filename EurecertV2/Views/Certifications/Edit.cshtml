@@ -1,0 +1,268 @@
+﻿@model EurecertV2.Models.Certification
+
+@{
+    ViewData["Title"] = "Düzenle";
+}
+
+<h2>Düzenle</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>Belgelendirme</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label asp-for="CompanyId" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
+                <span asp-validation-for="CompanyId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReportCode" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ReportCode" class="form-control" />
+                <span asp-validation-for="ReportCode" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImprintCode" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ImprintCode" class="form-control" />
+                <span asp-validation-for="ImprintCode" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="InspectorPersonId" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="InspectorPersonId" class="form-control" asp-items="ViewBag.InspectorPersonId"></select>
+                <span asp-validation-for="InspectorPersonId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="InspectionDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="InspectionDate" class="form-control" />
+                <span asp-validation-for="InspectionDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="MarketingMethodId" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="MarketingMethodId" class="form-control" asp-items="ViewBag.MarketingMethodId"></select>
+                <span asp-validation-for="MarketingMethodId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ApplicationMethodId" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="ApplicationMethodId" class="form-control" asp-items="ViewBag.ApplicationMethodId"></select>
+                <span asp-validation-for="ApplicationMethodId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input asp-for="IsPresentationDone" />
+                    <label asp-for="IsPresentationDone"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PresentationDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PresentationDate" class="form-control" />
+                <span asp-validation-for="PresentationDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="FirstContactDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="FirstContactDate" class="form-control" />
+                <span asp-validation-for="FirstContactDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="FirstContactPersonId" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="FirstContactPersonId" class="form-control" asp-items="ViewBag.FirstContactPersonId"></select>
+                <span asp-validation-for="FirstContactPersonId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="FirstInspectionDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="FirstInspectionDate" class="form-control" />
+                <span asp-validation-for="FirstInspectionDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ApproveDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ApproveDate" class="form-control" />
+                <span asp-validation-for="ApproveDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="DataSendDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="DataSendDate" class="form-control" />
+                <span asp-validation-for="DataSendDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReportReturnDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ReportReturnDate" class="form-control" />
+                <span asp-validation-for="ReportReturnDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReportPreparedBy" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ReportPreparedBy" class="form-control" />
+                <span asp-validation-for="ReportPreparedBy" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="InspectionReport" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="InspectionReport" class="form-control" />
+                <span asp-validation-for="InspectionReport" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ReportRecievedDateByCompany" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ReportRecievedDateByCompany" class="form-control" />
+                <span asp-validation-for="ReportRecievedDateByCompany" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CompanyAnswerToReport" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CompanyAnswerToReport" class="form-control" />
+                <span asp-validation-for="CompanyAnswerToReport" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="StartDateForMissings" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="StartDateForMissings" class="form-control" />
+                <span asp-validation-for="StartDateForMissings" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="FinishDateForMissings" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="FinishDateForMissings" class="form-control" />
+                <span asp-validation-for="FinishDateForMissings" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastInspectionDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="LastInspectionDate" class="form-control" />
+                <span asp-validation-for="LastInspectionDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CertificationResultId" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="CertificationResultId" class="form-control" asp-items="ViewBag.CertificationResultId"></select>
+                <span asp-validation-for="CertificationResultId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="QualityCertificateDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="QualityCertificateDate" class="form-control" />
+                <span asp-validation-for="QualityCertificateDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="QualityCertificateEndDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="QualityCertificateEndDate" class="form-control" />
+                <span asp-validation-for="QualityCertificateEndDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CertificationInputsCompleteDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CertificationInputsCompleteDate" class="form-control" />
+                <span asp-validation-for="CertificationInputsCompleteDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CertificationInputsUserId" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="CertificationInputsUserId" class="form-control" asp-items="ViewBag.CertificationInputsUserId"></select>
+                <span asp-validation-for="CertificationInputsUserId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="InspectorNotes" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="InspectorNotes" class="form-control" />
+                <span asp-validation-for="InspectorNotes" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ProposedBudget" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ProposedBudget" class="form-control" />
+                <span asp-validation-for="ProposedBudget" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="InspectionFile" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="InspectionFile" class="form-control" />
+                <span asp-validation-for="InspectionFile" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CreateDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CreateDate" readonly class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CreatedBy" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CreatedBy" readonly class="form-control" />
+                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="UpdateDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="UpdateDate" readonly class="form-control" />
+                <span asp-validation-for="UpdateDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="UpdatedBy" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="UpdatedBy" readonly class="form-control" />
+                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Kaydet" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Listeye Geri Dön</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

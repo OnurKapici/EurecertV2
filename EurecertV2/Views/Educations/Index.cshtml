@@ -1,0 +1,143 @@
+﻿@model IEnumerable<EurecertV2.Models.Education>
+
+@{
+    ViewData["Title"] = "Eğitimler";
+}
+
+<h2>Eğitimler</h2>
+
+<p>
+    <a asp-action="Create">Yeni Oluştur</a>
+</p>
+<table id="tblRecords" class="table table-striped table-hover">
+    <thead>
+        <tr>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ReportCode)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.IsMarketingDone)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.MarketingDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.Teacher)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ProposedBudget)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ProposalDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.CompanyRequests)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.EducationStartDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.EducationFinishDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.EducationLocation)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.TeacherNotes)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.CreateDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.UpdateDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.UpdatedBy)
+                </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.ApplicationMethod)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.EducationCategory)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.MarketingMethod)
+            </th>
+            <th data-orderable="false" class="all">Eylemler</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsMarketingDone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MarketingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teacher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProposedBudget)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProposalDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyRequests)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EducationStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EducationFinishDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EducationLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeacherNotes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationMethod.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EducationCategory.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MarketingMethod.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Ayrıntılar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
