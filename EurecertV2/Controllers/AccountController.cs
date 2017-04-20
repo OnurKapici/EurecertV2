@@ -98,8 +98,12 @@ namespace EurecertV2.Controllers
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            if (_userManager.Users.Any() && User.Identity.Name != "hanifebaykal34@hotmail.com")
+            {
+                return RedirectToAction("Login");
+            }
+            ViewData["ReturnUrl"] = returnUrl;           
+            return View();            
         }
 
         //
@@ -109,6 +113,10 @@ namespace EurecertV2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
+            if (_userManager.Users.Any() && User.Identity.Name != "hanifebaykal34@hotmail.com")
+            {
+                return RedirectToAction("Login");
+            }
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {

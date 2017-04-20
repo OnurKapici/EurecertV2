@@ -31,7 +31,7 @@ namespace EurecertV2.Models
         [Display(Name = "Tanıtım Yöntemi")]
         public virtual MarketingMethod MarketingMethod { get; set; }
         [Display(Name = "Tanıtım Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? MarketingDate { get; set; }
         [Display(Name = "Başvuru Yöntemi")]
         public int? ApplicationMethodId { get; set; }
@@ -49,16 +49,16 @@ namespace EurecertV2.Models
         [Display(Name = "Teklif Edilen Bütçe")]
         public decimal? ProposedBudget { get; set; }
         [Display(Name = "Teklif Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? ProposalDate { get; set; }
         [Display(Name = "Kurumun Talepleri")]
         [DataType(DataType.MultilineText)]
         public string CompanyRequests { get; set; }
         [Display(Name = "Eğitim Başlangıç Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? EducationStartDate { get; set; }
         [Display(Name = "Eğitim Bitiş Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? EducationFinishDate { get; set; }
         [StringLength(200)]
         [Display(Name = "Eğitim Yeri")]

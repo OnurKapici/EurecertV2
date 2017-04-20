@@ -1,4 +1,5 @@
 ﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@inject SignInManager<ApplicationUser> SignInManager
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,14 +26,17 @@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
+                    <span class="sr-only">Menüyü aç/kapa</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">EURECERT</a>
             </div>
+           
             <div class="navbar-collapse collapse">
+@if (SignInManager.IsSignedIn(User))
+{
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Companies" asp-action="Index">Kurumlar</a></li>
                     <li><a asp-area="" asp-controller="Certifications" asp-action="Index">Belgelendirme</a></li>
@@ -58,6 +62,7 @@
                         </ul>
                     </li>
                 </ul>
+}
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
@@ -100,7 +105,10 @@
                     "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Turkish.json"
                 }
             });
+
+            
         });
+        
     </script>
     @RenderSection("Scripts", required: false)
 </body>

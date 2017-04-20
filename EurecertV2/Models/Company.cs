@@ -67,8 +67,10 @@ namespace EurecertV2.Models
         [DataType(DataType.MultilineText)]
         public string ProposalResult { get; set; }
         [Display(Name = "Peşinat")]
+        [DataType(DataType.Currency)]
         public decimal? DownPayment { get; set; }
         [Display(Name = "Toplam Alacak")]
+        [DataType(DataType.Currency)]
         public decimal? TotalAmount { get; set; }
         [Display(Name = "Verilen Hizmetler")]
         public virtual ICollection<CompanyService> CompanyServices { get; set; }

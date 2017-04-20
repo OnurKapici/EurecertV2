@@ -14,8 +14,13 @@
         <div class="form-group">
             <label asp-for="CompanyId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="CompanyId" class ="form-control" asp-items="ViewBag.CompanyId"></select>
+                <div class="input-group">
+                <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId">
+                    <option value="">(Seçiniz)</option>
+                </select>
+                <span class="input-group-btn"><a class="btn btn-default" asp-controller="Companies" asp-action="Index">...</a></span>
             </div>
+        </div>
         </div>
         <div class="form-group">
             <label asp-for="ReportCode" class="col-md-2 control-label"></label>
@@ -34,7 +39,12 @@
         <div class="form-group">
             <label asp-for="InspectorPersonId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="InspectorPersonId" class ="form-control" asp-items="ViewBag.InspectorPersonId"></select>
+                <div class="input-group">
+                    <select asp-for="InspectorPersonId" class="form-control" asp-items="ViewBag.InspectorPersonId">
+                        <option value="">(Seçiniz)</option>
+                    </select>
+                    <span class="input-group-btn"><a class="btn btn-default" asp-controller="ApplicationUsers" asp-action="Index">...</a></span>
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -47,13 +57,23 @@
         <div class="form-group">
             <label asp-for="MarketingMethodId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="MarketingMethodId" class ="form-control" asp-items="ViewBag.MarketingMethodId"></select>
+                <div class="input-group">
+                    <select asp-for="MarketingMethodId" class="form-control" asp-items="ViewBag.MarketingMethodId">
+                        <option value="">(Seçiniz)</option>
+                    </select>
+                    <span class="input-group-btn"><a class="btn btn-default" asp-controller="MarketingMethods" asp-action="Index">...</a></span>
+                </div>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="ApplicationMethodId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="ApplicationMethodId" class ="form-control" asp-items="ViewBag.ApplicationMethodId"></select>
+                <div class="input-group">
+                    <select asp-for="ApplicationMethodId" class="form-control" asp-items="ViewBag.ApplicationMethodId">
+                        <option value="">(Seçiniz)</option>
+                    </select>
+                    <span class="input-group-btn"><a class="btn btn-default" asp-controller="ApplicationMethods" asp-action="Index">...</a></span>
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -81,7 +101,12 @@
         <div class="form-group">
             <label asp-for="FirstContactPersonId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="FirstContactPersonId" class ="form-control" asp-items="ViewBag.FirstContactPersonId"></select>
+                <div class="input-group">
+                    <select asp-for="FirstContactPersonId" class="form-control" asp-items="ViewBag.FirstContactPersonId">
+                        <option value="">(Seçiniz)</option>
+                    </select>
+                    <span class="input-group-btn"><a class="btn btn-default" asp-controller="ApplicationUsers" asp-action="Index">...</a></span>
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -166,7 +191,7 @@
             <div class="col-md-10">
                 <div class="input-group">
                     <select asp-for="CertificationResultId" class="form-control" asp-items="ViewBag.CertificationResultId"></select>
-                    <span class="input-group-btn"><a class="btn btn-sm btn-default" asp-controller="CertificationResults" asp-action="Index">...</a></span>
+                    <span class="input-group-btn"><a class="btn btn-default" asp-controller="CertificationResults" asp-action="Index">...</a></span>
                 </div>
             </div>
         </div>
@@ -194,7 +219,12 @@
         <div class="form-group">
             <label asp-for="CertificationInputsUserId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="CertificationInputsUserId" class ="form-control" asp-items="ViewBag.CertificationInputsUserId"></select>
+                <div class="input-group">
+                    <select asp-for="CertificationInputsUserId" class="form-control" asp-items="ViewBag.CertificationInputsUserId">
+                        <option value="">(Seçiniz)</option>
+                    </select>
+                    <span class="input-group-btn"><a class="btn btn-default" asp-controller="ApplicationUsers" asp-action="Index">...</a></span>
+                </div>
             </div>
         </div>
         <div class="form-group">

@@ -49,7 +49,10 @@ namespace EurecertV2
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc();
+            services.AddMvc(config =>
+            {
+                config.ModelBinderProviders.Insert(0, new InvariantDecimalModelBinderProvider());
+            });
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();

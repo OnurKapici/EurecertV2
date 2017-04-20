@@ -5,7 +5,7 @@
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
-    ViewData["Title"] = "Log in";
+    ViewData["Title"] = "Giriş";
 }
 
 <h2>@ViewData["Title"].</h2>
@@ -13,7 +13,7 @@
     <div class="col-md-8">
         <section>
             <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                <h4>Use a local account to log in.</h4>
+                <h4>Giriş yapmak için yerel hesabınızı kullanın.</h4>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
@@ -42,21 +42,26 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" class="btn btn-default">Log in</button>
+                        <button type="submit" class="btn btn-default">Giriş</button>
                     </div>
                 </div>
                 <p>
-                    <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
+                    <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Yeni kullanıcı olarak kaydol?</a>
                 </p>
                 <p>
-                    <a asp-action="ForgotPassword">Forgot your password?</a>
+                    <a asp-action="ForgotPassword">Şifremi unuttum?</a>
                 </p>
             </form>
         </section>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 text-center">
         <section>
-            <h4>Use another service to log in.</h4>
+            
+                <img src="/images/eurecert_logo.png" alt="Eurecert"><br />
+                <img src="/images/beyazay_logo.png" alt="Türkiye Beyazay Derneği"><br />
+                <img src="/images/bagcilar_bel.png" alt="Bağcılar Belediyesi">
+            
+            @*<h4>Use another service to log in.</h4>
             <hr />
             @{
                 var loginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
@@ -82,7 +87,7 @@
                         </div>
                     </form>
                 }
-            }
+            }*@
         </section>
     </div>
 </div>
