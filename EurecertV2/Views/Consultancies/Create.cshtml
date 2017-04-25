@@ -12,9 +12,13 @@
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="CompanyId" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="CompanyId" class ="form-control" asp-items="ViewBag.CompanyId"></select>
+          <label asp-for="CompanyId" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
+                        <span class="input-group-btn"><a class="btn btn-default" asp-controller="Companies" asp-action="Index">...</a></span>
+                    </div>
+                <span asp-validation-for="CompanyId" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
@@ -27,9 +31,13 @@
         <div class="form-group">
             <label asp-for="ApplicationMethodId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="ApplicationMethodId" class ="form-control" asp-items="ViewBag.ApplicationMethodId">
-                    <option value="">(Seçiniz)</option>
-                </select>
+                <div class="input-group">
+                    <select asp-for="ApplicationMethodId" class="form-control" asp-items="ViewBag.ApplicationMethodId">
+                        <option value="">(Seçiniz)</option>
+                    </select>
+                    <span class="input-group-btn"><a class="btn btn-default" asp-controller="ApplicationMethods" asp-action="Index">...</a></span>
+                   </div>
+                <span asp-validation-for="ApplicationMethodId" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
@@ -57,9 +65,13 @@
         <div class="form-group">
             <label asp-for="MarketingMethodId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
+                <div class="input-group">
                 <select asp-for="MarketingMethodId" class ="form-control" asp-items="ViewBag.MarketingMethodId">
                     <option value="">(Seçiniz)</option>
                 </select>
+                <span class="input-group-btn"><a class="btn btn-default" asp-controller="MarketingMethods" asp-action="Index">...</a></span>
+                </div>
+                <span asp-validation-for="MarketingMethodId" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
@@ -107,9 +119,14 @@
         <div class="form-group">
             <label asp-for="ReportCreatedById" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="ReportCreatedById" class ="form-control" asp-items="ViewBag.ReportCreatedById">
-                    <option value="">(Seçiniz)</option>
-                </select>
+                <div class="input-group">
+                    <select asp-for="ReportCreatedById" class="form-control" asp-items="ViewBag.ReportCreatedById">
+                        <option value="">(Seçiniz)</option>
+                    </select>
+                    <span class="input-group-btn"><a class="btn btn-default" asp-controller="ApplicationUsers" asp-action="Index">...</a></span>
+
+                </div>
+                <span asp-validation-for="ReportCreatedById" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
