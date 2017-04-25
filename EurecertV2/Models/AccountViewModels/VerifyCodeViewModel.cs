@@ -16,10 +16,10 @@ namespace EurecertV2.Models.AccountViewModels
 
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Remember this browser?")]
+        [Display(Name = "Bu Taracayı Hatırla")]
         public bool RememberBrowser { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Beni Hatırla")]
         public bool RememberMe { get; set; }
     }
 }
