@@ -13,6 +13,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\assets\apps\css\inbox.css" />
+    <Content Include="wwwroot\assets\apps\css\inbox.min.css" />
+    <Content Include="wwwroot\assets\apps\css\ticket.css" />
+    <Content Include="wwwroot\assets\apps\css\ticket.min.css" />
+    <Content Include="wwwroot\assets\apps\css\todo-2.css" />
+    <Content Include="wwwroot\assets\apps\css\todo-2.min.css" />
+    <Content Include="wwwroot\assets\apps\css\todo.css" />
+    <Content Include="wwwroot\assets\apps\css\todo.min.css" />
+    <Content Include="wwwroot\assets\apps\scripts\calendar.js" />
+    <Content Include="wwwroot\assets\apps\scripts\calendar.min.js" />
+    <Content Include="wwwroot\assets\apps\scripts\inbox.js" />
+    <Content Include="wwwroot\assets\apps\scripts\inbox.min.js" />
+    <Content Include="wwwroot\assets\apps\scripts\todo-2.js" />
+    <Content Include="wwwroot\assets\apps\scripts\todo-2.min.js" />
+    <Content Include="wwwroot\assets\apps\scripts\todo.js" />
+    <Content Include="wwwroot\assets\apps\scripts\todo.min.js" />
     <Content Include="wwwroot\images\bagcilar_bel.png" />
     <Content Include="wwwroot\images\beyazay_logo.png" />
     <Content Include="wwwroot\images\eurecert_logo.png" />
@@ -40,6 +56,7 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="wwwroot\assets\apps\img\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
