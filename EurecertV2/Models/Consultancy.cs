@@ -31,7 +31,7 @@ namespace EurecertV2.Models
         [Display(Name = "Sunum Yapıldı Mı?")]
         public bool IsPresentationDone { get; set; }
         [Display(Name = "Sunum Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? PresentationDate { get; set; }
         [StringLength(200)]
         [Display(Name = "Sunum Dosyası")]
@@ -44,19 +44,19 @@ namespace EurecertV2.Models
         [Display(Name = "Teklif Edilen Bütçe")]
         public decimal? ProposedBudget { get; set; }
         [Display(Name = "Teklif Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? ProposalDate { get; set; }
         [Display(Name = "Kurumun Talepleri")]
         [DataType(DataType.MultilineText)]
         public string CompanyRequests { get; set; }
         [Display(Name = "Danışmanlık Başlangıç Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? ConsultancyStartDate { get; set; }
         [Display(Name = "Danışmanlık Bitiş Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? ConsultancyFinishDate { get; set; }
         [Display(Name = "Rapor Oluşturma Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? ReportCreateDate { get; set; }
         [Display(Name = "Rapor Oluşturan Kişi")]
         public string ReportCreatedById { get; set; }
@@ -64,7 +64,7 @@ namespace EurecertV2.Models
         [Display(Name = "Rapor Oluşturan Kişi")]
         public virtual ApplicationUser ReportCreatedBy { get; set; }
         [Display(Name = "Raporun Gönderilme Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? ReportSendDate { get; set; }
         [Display(Name = "Danışman Notları")]
         [DataType(DataType.MultilineText)]

@@ -32,7 +32,7 @@ namespace EurecertV2.Models
         [Display(Name = "Yetkili Denetmen Kişi")]
         public virtual ApplicationUser InspectorPerson { get; set; }
         [Display(Name = "Denetim Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? InspectionDate { get; set; }
         [Display(Name = "Tanıtım Yöntemi")]
         public int? MarketingMethodId { get; set; }
@@ -47,10 +47,10 @@ namespace EurecertV2.Models
         [Display(Name = "Tanıtım Yapıldı Mı?")]
         public bool IsPresentationDone { get; set; }
         [Display(Name = "Tanıtım Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? PresentationDate { get; set; }
         [Display(Name = "İlk İletişim Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? FirstContactDate { get; set; }
         [Display(Name = "İletişime Geçilen Kişi")]
         public string FirstContactPersonId { get; set; }
@@ -58,16 +58,16 @@ namespace EurecertV2.Models
         [Display(Name = "İletişime Geçilen Kişi")]
         public virtual ApplicationUser FirstContactPerson { get; set; }
         [Display(Name = "Ön Denetim Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? FirstInspectionDate { get; set; }
         [Display(Name = "Onay Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? ApproveDate { get; set; }
         [Display(Name = "Verilerin Almanya'ya Gönderildiği Tarih")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? DataSendDate { get; set; }
         [Display(Name = "Raporun Getirildiği Tarih")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? ReportReturnDate { get; set; }
         [StringLength(200)]
         [Display(Name = "Raporu Hazırlayan")]
@@ -76,19 +76,19 @@ namespace EurecertV2.Models
         [Display(Name = "Denetim Raporu")]
         public string InspectionReport { get; set; }
         [Display(Name = "Raporun Kuruma Ulaşma Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? ReportRecievedDateByCompany { get; set; }
         [Display(Name = "Kurum Rapora Cevabı")]
         [DataType(DataType.MultilineText)]
         public string CompanyAnswerToReport { get; set; }
         [Display(Name = "Eksikliklere Başlama Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? StartDateForMissings { get; set; }
         [Display(Name = "Eksiklikleri Bitirme Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? FinishDateForMissings { get; set; }
         [Display(Name = "Son Denetim Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? LastInspectionDate { get; set; }
         [Display(Name = "Belgelendirme Sonucu")]
         public int? CertificationResultId { get; set; }
@@ -96,13 +96,13 @@ namespace EurecertV2.Models
         [ForeignKey("CertificationResultId")]
         public virtual CertificationResult CertificationResult { get; set; }
         [Display(Name = "Kalite Belgesi Verilme Tarihi")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? QualityCertificateDate { get; set; }
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         [Display(Name = "Kalite Belgesi Bitiş Tarihi")]
         public DateTime? QualityCertificateEndDate { get; set; }
         [Display(Name = "Belgelendirme Girdilerinin Tamamlandığı Tarih")]
-        [DataType("datetime-local")]
+        [DataType(DataType.Date)]
         public DateTime? CertificationInputsCompleteDate { get; set; }
         [Display(Name = "Belgelendirme Girdilerini Giren Kişi")]
         public string CertificationInputsUserId { get; set; }
