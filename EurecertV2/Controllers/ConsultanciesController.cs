@@ -209,12 +209,7 @@ namespace EurecertV2.Controllers
             var consultancy = await _context.Consultancies.SingleOrDefaultAsync(m => m.Id == id);
             try
             {
-                if (consultancy.PresentationFile != null)
-                {
-                    System.IO.File.Delete(env.WebRootPath + "\\uploads\\presentationFiles\\" + consultancy.PresentationFile);
-                    
-                }
-                
+             
                 _context.Consultancies.Remove(consultancy);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");

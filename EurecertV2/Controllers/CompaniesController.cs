@@ -215,10 +215,7 @@ namespace EurecertV2.Controllers
             var company = await _context.Companies.SingleOrDefaultAsync(m => m.Id == id);
             try
             {
-                if (company.ProposalFile != null)
-                {
-                    System.IO.File.Delete(env.WebRootPath + "\\uploads\\ProposalFiles\\" + company.ProposalFile);
-                }
+                
                 _context.Companies.Remove(company);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");

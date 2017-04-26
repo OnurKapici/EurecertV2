@@ -68,7 +68,7 @@
             <div class="col-md-10">
                 <input asp-for="PresentationFile" class="form-control" />
                 <label class="btn btn-default btn-file">
-                    <input type="file" name="presentationUpload" hidden>
+                    <input type="file" name="presentationUpload" accept=".ppt,.pptx,.pptm,.doc,.docx,.pdf" hidden>
                 </label>
                 <span asp-validation-for="PresentationFile" class="text-danger"></span>
             </div>
