@@ -190,7 +190,9 @@
             <label asp-for="CertificationResultId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <div class="input-group">
-                    <select asp-for="CertificationResultId" class="form-control" asp-items="ViewBag.CertificationResultId"></select>
+                    <select asp-for="CertificationResultId" class="form-control" asp-items="ViewBag.CertificationResultId">
+                        <option value="">(Seçiniz)</option>
+                    </select>
                     <span class="input-group-btn"><a class="btn btn-default" asp-controller="CertificationResults" asp-action="Index">...</a></span>
                 </div>
             </div>
