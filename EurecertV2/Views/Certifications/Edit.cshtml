@@ -150,7 +150,7 @@
             <div class="col-md-10">
                 <input asp-for="InspectionReport" class="form-control" />
                 <label class="btn btn-default btn-file">
-                    <input type="file" name="InspectionReportUpload" hidden>
+                    <input type="file" name="InspectionReportUpload" accept=".ppt,.pptx,.pptm,.doc,.docx,.pdf" hidden>
                 </label>
                 <span asp-validation-for="InspectionReport" class="text-danger"></span>
             </div>
@@ -252,7 +252,7 @@
             <div class="col-md-10">
                 <input asp-for="InspectionFile" class="form-control" />
                 <label class="btn btn-default btn-file">
-                    <input type="file" name="InspectionFileUpload" hidden>
+                    <input type="file" name="InspectionFileUpload" accept=".ppt,.pptx,.pptm,.doc,.docx,.pdf" hidden>
                 </label>
                 <span asp-validation-for="InspectionFile" class="text-danger"></span>
             </div>

@@ -267,15 +267,7 @@ namespace EurecertV2.Controllers
             var certification = await _context.Certifications.SingleOrDefaultAsync(m => m.Id == id);
             try
             {
-                if (certification.InspectionFile != null)
-                {
-                    System.IO.File.Delete(env.WebRootPath + "\\uploads\\inspectionFiles\\" + certification.InspectionFile);
-                }
-                if (certification.InspectionReport != null)
-                {
-                    System.IO.File.Delete(env.WebRootPath + "\\uploads\\inspectionReportFiles\\" + certification.InspectionReport);
-                }
-
+                
                 _context.Certifications.Remove(certification);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
