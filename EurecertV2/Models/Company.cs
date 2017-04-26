@@ -17,7 +17,7 @@ namespace EurecertV2.Models
         }
 
         public int Id { get; set; }
-        [Required]
+        [Required (ErrorMessage ="Kurum ad alanı boş bırakılamaz.")]
         [StringLength(200)]
         [Display(Name = "Kurum Adı")]
         public string Name { get; set; }

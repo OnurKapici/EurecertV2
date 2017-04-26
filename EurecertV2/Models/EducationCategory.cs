@@ -10,7 +10,7 @@ namespace EurecertV2.Models
     {
         public int Id { get; set; }
         [StringLength(200)]
-        [Required]
+        [Required(ErrorMessage = "Eğitim tipi alanı boş bırakılamaz.")]
         [Display(Name = "Eğitim Tipi")]
         public string Name { get; set; }
     }
