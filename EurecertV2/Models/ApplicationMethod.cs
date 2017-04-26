@@ -9,7 +9,7 @@ namespace EurecertV2.Models
     public class ApplicationMethod
     {
         public int Id { get; set; }
-        [Required]
+        [Required (ErrorMessage = "Başvuru Yöntemi Seçilmesi Gereklidir")]
         [StringLength(200)]
         [Display(Name="Başvuru Yöntemi")]
         public string Name { get; set; }
