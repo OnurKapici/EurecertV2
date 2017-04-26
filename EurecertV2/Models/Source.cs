@@ -10,7 +10,7 @@ namespace EurecertV2.Models
     {
         public int Id { get; set; }
         [StringLength(200)]
-        [Required]
+        [Required(ErrorMessage = "Haberdar olma şekli boş bırakılamaz.")]
         [Display(Name = "Haberdar Olma Şekli")]
         public string Name { get; set; }
     }

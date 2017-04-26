@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using EurecertV2.Data;
 using EurecertV2.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace EurecertV2.Controllers
 {
@@ -15,10 +18,13 @@ namespace EurecertV2.Controllers
     public class ConsultanciesController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public ConsultanciesController(ApplicationDbContext context)
+        private IHostingEnvironment env;
+        
+        
+        public ConsultanciesController(ApplicationDbContext context, IHostingEnvironment _env)
         {
-            _context = context;    
+            _context = context;
+            this.env = _env;
         }
 
         // GET: Consultancies
@@ -69,11 +75,27 @@ namespace EurecertV2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CompanyId,ReportCode,ApplicationMethodId,IsPresentationDone,PresentationDate,PresentationFile,MarketingMethodId,ProposedBudget,ProposalDate,CompanyRequests,ConsultancyStartDate,ConsultancyFinishDate,ReportCreateDate,ReportCreatedById,ReportSendDate,ConsultantNotes,CreateDate,CreatedBy,UpdateDate,UpdatedBy,ServiceFields")] Consultancy consultancy)
+        public async Task<IActionResult> Create([Bind("Id,CompanyId,ReportCode,ApplicationMethodId,IsPresentationDone,PresentationDate,PresentationFile,MarketingMethodId,ProposedBudget,ProposalDate,CompanyRequests,ConsultancyStartDate,ConsultancyFinishDate,ReportCreateDate,ReportCreatedById,ReportSendDate,ConsultantNotes,CreateDate,CreatedBy,UpdateDate,UpdatedBy,ServiceFields")] Consultancy consultancy,IFormFile presentationUpload)
         {
+            if(presentationUpload != null && presentationUpload.Length > 0 && ".ppt,.pptx,.pptm,.doc,.docx,.pdf".Contains(Path.GetExtension(presentationUpload.FileName)) == false)
+            {
+                ModelState.AddModelError("presentationUpload", "Sunum dosyasý .ppt, .pptx, .pptm, .doc, .docx, .pdf uzantýlarýnda olmalýdýr");
+            }
             if (ModelState.IsValid)
             {
                 
+                if(presentationUpload != null && presentationUpload.Length > 0)
+                {
+                    
+                    string presentationName = new Random().Next(9999).ToString() + presentationUpload.FileName;
+                    
+
+                    using (var stream = new FileStream(env.WebRootPath + "\\uploads\\presentationFiles\\" + presentationName, FileMode.Create))
+                    {
+                        presentationUpload.CopyTo(stream);
+                    }
+                    consultancy.PresentationFile = presentationName;
+                }
                 _context.Add(consultancy);
                 await _context.SaveChangesAsync();
 
@@ -116,6 +138,7 @@ namespace EurecertV2.Controllers
             ViewData["ReportCreatedById"] = new SelectList(_context.ApplicationUser, "Id", "FullName", consultancy.ReportCreatedById);
             ViewData["ServiceFields"] = new MultiSelectList(_context.ServiceFields, "Id", "Name",consultancy.ConsultancyServiceFields.Select(c => c.ServiceFieldId).ToList());
             return View(consultancy);
+            
         }
 
         // POST: Consultancies/Edit/5
@@ -123,20 +146,32 @@ namespace EurecertV2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CompanyId,ReportCode,ApplicationMethodId,IsPresentationDone,PresentationDate,PresentationFile,MarketingMethodId,ProposedBudget,ProposalDate,CompanyRequests,ConsultancyStartDate,ConsultancyFinishDate,ReportCreateDate,ReportCreatedById,ReportSendDate,ConsultantNotes,CreateDate,CreatedBy,UpdateDate,UpdatedBy,ServiceFields")] Consultancy consultancy)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CompanyId,ReportCode,ApplicationMethodId,IsPresentationDone,PresentationDate,PresentationFile,MarketingMethodId,ProposedBudget,ProposalDate,CompanyRequests,ConsultancyStartDate,ConsultancyFinishDate,ReportCreateDate,ReportCreatedById,ReportSendDate,ConsultantNotes,CreateDate,CreatedBy,UpdateDate,UpdatedBy,ServiceFields")] Consultancy consultancy,IFormFile presentationUpload)
         {
             
             if (id != consultancy.Id)
             {
                 return NotFound();
             }
-
+            if (presentationUpload != null && presentationUpload.Length > 0 && ".ppt,.pptx,.pptm,.doc,.docx,.pdf".Contains(Path.GetExtension(presentationUpload.FileName)) == false)
+            {
+                ModelState.AddModelError("presentationUpload", "Sunum dosyasý .ppt, .pptx, .pptm, .doc, .docx, .pdf uzantýlarýnda olmalýdýr");
+            }
+            
             if (ModelState.IsValid)
             {
                 
                 try
                 {
-
+                    if (presentationUpload != null && presentationUpload.Length > 0)
+                    {          
+                        string presentationName = new Random().Next(9999).ToString() + presentationUpload.FileName;
+                        using (var stream = new FileStream(env.WebRootPath + "\\uploads\\presentationFiles\\" + presentationName, FileMode.Create))
+                        {
+                            presentationUpload.CopyTo(stream);
+                        }
+                        consultancy.PresentationFile = presentationName;
+                    }
                     _context.ConsultancyServiceFields.RemoveRange(_context.ConsultancyServiceFields.Where(w => w.ConsultancyId == id).ToList());
                     _context.SaveChanges();
                     _context.Update(consultancy);
@@ -200,10 +235,18 @@ namespace EurecertV2.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var consultancy = await _context.Consultancies.SingleOrDefaultAsync(m => m.Id == id);
-            consultancy.ConsultancyServiceFields.Clear();
-            _context.Consultancies.Remove(consultancy);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+            try
+            {
+                consultancy.ConsultancyServiceFields.Clear();
+                _context.Consultancies.Remove(consultancy);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("Delete", "Silme Ýþlemi Esnasýnda Hata Oluþtu.Bu Kayýdýn Baþka Kayýtlar Tarafýndan Kullanýlmadýðýna Emin Olun !!");
+                return View(consultancy);
+            }
         }
 
         private bool ConsultancyExists(int id)
