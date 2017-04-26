@@ -10,7 +10,7 @@ namespace EurecertV2.Models.AccountViewModels
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "E-Posta")]
         public string Email { get; set; }
 
         [Required]
