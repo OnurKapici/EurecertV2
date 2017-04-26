@@ -214,7 +214,7 @@ namespace EurecertV2.Controllers
                     System.IO.File.Delete(env.WebRootPath + "\\uploads\\presentationFiles\\" + consultancy.PresentationFile);
                     
                 }
-                Console.WriteLine(consultancy.PresentationFile + "5");
+                
                 _context.Consultancies.Remove(consultancy);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");

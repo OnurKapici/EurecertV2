@@ -876,6 +876,11 @@
   <ItemGroup>
     <Folder Include="wwwroot\assets\apps\img\" />
     <Folder Include="wwwroot\lib\" />
+    <Folder Include="wwwroot\uploads\inspectionFiles\" />
+    <Folder Include="wwwroot\uploads\inspectionFiles\" />
+    <Folder Include="wwwroot\uploads\inspectionReportFiles\" />
+    <Folder Include="wwwroot\uploads\inspectionReportFiles\" />
+    <Folder Include="wwwroot\uploads\proposalFiles\" />
     <Folder Include="wwwroot\uploads\presentationFiles\" />
   </ItemGroup>
 

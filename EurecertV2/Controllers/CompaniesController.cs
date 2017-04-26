@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using EurecertV2.Data;
 using EurecertV2.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace EurecertV2.Controllers
 {
@@ -15,10 +18,12 @@ namespace EurecertV2.Controllers
     public class CompaniesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private IHostingEnvironment env;
 
-        public CompaniesController(ApplicationDbContext context)
+        public CompaniesController(ApplicationDbContext context, IHostingEnvironment _env)
         {
-            _context = context;    
+            _context = context;
+            env = _env;
         }
 
         // GET: Companies
@@ -70,10 +75,26 @@ namespace EurecertV2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,CompanyFunctionId,CountryId,CityId,Address,Email,Phone,Website,SourceId,SalesPersonId,ProposalAbstract,ProposalFile,ProposalResult,DownPayment,TotalAmount,CompanyRequests,VisitCount,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Company company)
+        public async Task<IActionResult> Create([Bind("Id,Name,CompanyFunctionId,CountryId,CityId,Address,Email,Phone,Website,SourceId,SalesPersonId,ProposalAbstract,ProposalFile,ProposalResult,DownPayment,TotalAmount,CompanyRequests,VisitCount,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Company company, IFormFile ProposalFileUpload)
         {
+            if (ProposalFileUpload != null && ProposalFileUpload.Length > 0 && ".ppt,.pptx,.pptm,.doc,.docx,.pdf".Contains(Path.GetExtension(ProposalFileUpload.FileName)) == false)
+            {
+                ModelState.AddModelError("InspectionFileUpload", "Rapor dosyasý .ppt, .pptx, .pptm, .doc, .docx, .pdf uzantýlarýnda olmalýdýr");
+            }
             if (ModelState.IsValid)
             {
+                if (ProposalFileUpload != null && ProposalFileUpload.Length > 0)
+                {
+
+                    string ProposalFileName = new Random().Next(9999).ToString() + ProposalFileUpload.FileName;
+
+
+                    using (var stream = new FileStream(env.WebRootPath + "\\uploads\\ProposalFiles\\" + ProposalFileName, FileMode.Create))
+                    {
+                        ProposalFileUpload.CopyTo(stream);
+                    }
+                    company.ProposalFile = ProposalFileName;
+                }
                 _context.Add(company);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -112,17 +133,33 @@ namespace EurecertV2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,CompanyFunctionId,CountryId,CityId,Address,Email,Phone,Website,SourceId,SalesPersonId,ProposalAbstract,ProposalFile,ProposalResult,DownPayment,TotalAmount,CompanyRequests,VisitCount,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Company company)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,CompanyFunctionId,CountryId,CityId,Address,Email,Phone,Website,SourceId,SalesPersonId,ProposalAbstract,ProposalFile,ProposalResult,DownPayment,TotalAmount,CompanyRequests,VisitCount,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Company company, IFormFile ProposalFileUpload)
         {
             if (id != company.Id)
             {
                 return NotFound();
+            }
+            if (ProposalFileUpload != null && ProposalFileUpload.Length > 0 && ".ppt,.pptx,.pptm,.doc,.docx,.pdf".Contains(Path.GetExtension(ProposalFileUpload.FileName)) == false)
+            {
+                ModelState.AddModelError("InspectionFileUpload", "Rapor dosyasý .ppt, .pptx, .pptm, .doc, .docx, .pdf uzantýlarýnda olmalýdýr");
             }
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                    if (ProposalFileUpload != null && ProposalFileUpload.Length > 0)
+                    {
+
+                        string ProposalFileName = new Random().Next(9999).ToString() + ProposalFileUpload.FileName;
+
+
+                        using (var stream = new FileStream(env.WebRootPath + "\\uploads\\ProposalFiles\\" + ProposalFileName, FileMode.Create))
+                        {
+                            ProposalFileUpload.CopyTo(stream);
+                        }
+                        company.ProposalFile = ProposalFileName;
+                    }
                     _context.Update(company);
                     await _context.SaveChangesAsync();
                 }
@@ -176,9 +213,22 @@ namespace EurecertV2.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var company = await _context.Companies.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Companies.Remove(company);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+            try
+            {
+                if (company.ProposalFile != null)
+                {
+                    System.IO.File.Delete(env.WebRootPath + "\\uploads\\ProposalFiles\\" + company.ProposalFile);
+                }
+                _context.Companies.Remove(company);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("Delete", "Silme Ýþlemi Esnasýnda Hata Oluþtu.Bu Kayýdýn Baþka Kayýtlar Tarafýndan Kullanýlmadýðýna Emin Olun !!");
+                return View(company);
+            }
+
         }
 
         private bool CompanyExists(int id)

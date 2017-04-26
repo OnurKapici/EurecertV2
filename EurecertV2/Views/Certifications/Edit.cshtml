@@ -6,7 +6,7 @@
 
 <h2>Düzenle</h2>
 
-<form asp-action="Edit">
+<form asp-action="Edit" asp-controller="Certifications" method="post" enctype="multipart/form-data">
     <div class="form-horizontal">
         <h4>Belgelendirme</h4>
         <hr />
@@ -145,13 +145,16 @@
                     <span asp-validation-for="ReportPreparedBy" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
-                <label asp-for="InspectionReport" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="InspectionReport" class="form-control" />
-                    <span asp-validation-for="InspectionReport" class="text-danger"></span>
-                </div>
+        <div class="form-group">
+            <label asp-for="InspectionReport" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="InspectionReport" class="form-control" />
+                <label class="btn btn-default btn-file">
+                    <input type="file" name="InspectionReportUpload" hidden>
+                </label>
+                <span asp-validation-for="InspectionReport" class="text-danger"></span>
             </div>
+        </div>
             <div class="form-group">
                 <label asp-for="ReportRecievedDateByCompany" class="col-md-2 control-label"></label>
                 <div class="col-md-10">
@@ -244,13 +247,16 @@
                     <span asp-validation-for="ProposedBudget" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
-                <label asp-for="InspectionFile" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <input asp-for="InspectionFile" class="form-control" />
-                    <span asp-validation-for="InspectionFile" class="text-danger"></span>
-                </div>
+        <div class="form-group">
+            <label asp-for="InspectionFile" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="InspectionFile" class="form-control" />
+                <label class="btn btn-default btn-file">
+                    <input type="file" name="InspectionFileUpload" hidden>
+                </label>
+                <span asp-validation-for="InspectionFile" class="text-danger"></span>
             </div>
+        </div>
             <div class="form-group">
                 <label asp-for="CreateDate" class="col-md-2 control-label"></label>
                 <div class="col-md-10">

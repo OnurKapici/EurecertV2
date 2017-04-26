@@ -66,8 +66,9 @@
         <div class="form-group">
             <label asp-for="PresentationFile" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <label class="btn-block btn-default btn-file">
-                    <input asp-for="PresentationFile" class="form-control" type="file" name="presentationUpload" />
+                <input asp-for="PresentationFile" class="form-control" />
+                <label class="btn btn-default btn-file">
+                    <input type="file" name="presentationUpload" hidden>
                 </label>
                 <span asp-validation-for="PresentationFile" class="text-danger"></span>
             </div>
