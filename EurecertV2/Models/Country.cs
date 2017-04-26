@@ -10,7 +10,7 @@ namespace EurecertV2.Models
     {
         public int Id { get; set; }
         [StringLength(200)]
-        [Required]
+        [Required(ErrorMessage = "Ülke alanı boş bırakılamaz.")]
         [Display(Name = "Ülke")]
         public string Name { get; set; }
     }
