@@ -11,9 +11,10 @@ namespace EurecertV2.Models
     {
         public int Id { get; set; }
         [StringLength(200)]
-        [Required]
+        [Required(ErrorMessage ="Şehir girilmesi zorunludur.") ]
         [Display(Name = "Şehir")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Ülke girilmesi zorunludur.")]
         [Display(Name = "Ülke")]
         public int CountryId { get; set; }
         [Display(Name = "Ülke")]

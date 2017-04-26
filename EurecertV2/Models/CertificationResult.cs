@@ -9,7 +9,7 @@ namespace EurecertV2.Models
     public class CertificationResult
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Belgelendirme Sonucu girilmesi zorunludur.")]
         [StringLength(200)]
         [Display(Name = "Belgelendirme Sonucu")]
         public string Name { get; set; }
