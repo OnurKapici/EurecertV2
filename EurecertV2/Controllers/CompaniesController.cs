@@ -67,8 +67,9 @@ namespace EurecertV2.Controllers
             var model = new Company();
             model.CreateDate = DateTime.Now;
             model.UpdateDate = DateTime.Now;
-            model.CreatedBy = User.Identity.Name;
             model.UpdatedBy = User.Identity.Name;
+            model.CreatedBy = User.Identity.Name;
+            
             return View(model);
         }
 
@@ -138,10 +139,15 @@ namespace EurecertV2.Controllers
             {
                 return NotFound();
             }
-          
+
+
+            company.UpdateDate = DateTime.Now;
+            company.UpdatedBy = User.Identity.Name;
 
             if (ModelState.IsValid)
             {
+                company.UpdateDate = DateTime.Now;
+                company.UpdatedBy = User.Identity.Name;
                 try
                 {
                     _context.Update(company);
