@@ -83,6 +83,23 @@
             @Html.DisplayFor(model => model.ConsultantNotes)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.ConsultancyServiceFields)
+        </dt>
+        <dd>
+            
+                    @foreach (var serviceField in (IEnumerable<ServiceField>)ViewBag.ServiceFields)
+                    {
+                        if (Model.ConsultancyServiceFields.FirstOrDefault(c => c.ServiceFieldId == serviceField.Id) != null)
+                        {
+                            <text>
+                            @serviceField.Name<br />
+                            </text>
+                        }
+                        
+                    }
+                  
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.CreateDate)
         </dt>
         <dd>
