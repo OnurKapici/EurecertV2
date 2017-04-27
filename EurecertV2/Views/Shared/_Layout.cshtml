@@ -44,6 +44,8 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="/assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css" />
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <!-- END HEAD -->
@@ -310,11 +312,39 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <i class="fa fa-circle"></i>
                             </li>
                             <li>
-                                <a href="#">Kurumlar</a>
-                                <i class="fa fa-circle"></i>
+                                @switch (ViewContext.RouteData.Values["controller"].ToString().ToLower()) {
+                                    case "companies":
+                                        @Html.Raw("<a href='/"+ViewContext.RouteData.Values["controller"].ToString()+"/Index'>Kurumlar</a>");
+                                        break;
+                                    case "certifications":
+                                        @Html.Raw("Belgelendirmeler");
+                                        break;
+                                    default:
+                                        @Html.Raw(ViewContext.RouteData.Values["controller"].ToString());
+                                        break;
+                                }
+
+                                                                        <i class="fa fa-circle"></i>
                             </li>
                             <li>
-                                <span>Tüm Kurumlar</span>
+                                <span>@switch (ViewContext.RouteData.Values["action"].ToString().ToLower())
+                                {
+                                    case "index":
+                                        @Html.Raw("Tümü");
+                                        break;
+                                    case "create":
+                                        @Html.Raw("Oluştur");
+                                        break;
+                                    case "edit":
+                                        @Html.Raw("Düzenle");
+                                        break;
+                                    case "delete":
+                                        @Html.Raw("Sil");
+                                        break;
+                                    default:
+                                        @Html.Raw(ViewContext.RouteData.Values["action"].ToString());
+                                        break;
+                                }</span>
                             </li>
                         </ul>
                       
@@ -930,9 +960,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN FOOTER -->
         <div class="page-footer">
             <div class="page-footer-inner">
-                2016 &copy; Metronic Theme By
-                <a target="_blank" href="http://keenthemes.com">Keenthemes</a> &nbsp;|&nbsp;
-                <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+                @DateTime.Now.Year &copy; EURECERT
             </div>
             <div class="scroll-to-top">
                 <i class="icon-arrow-up"></i>
