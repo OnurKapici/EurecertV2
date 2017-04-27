@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using EurecertV2.Data;
 using EurecertV2.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace EurecertV2.Controllers
 {
@@ -15,10 +18,12 @@ namespace EurecertV2.Controllers
     public class CertificationsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private IHostingEnvironment env;
 
-        public CertificationsController(ApplicationDbContext context)
+        public CertificationsController(ApplicationDbContext context,IHostingEnvironment _env)
         {
-            _context = context;    
+            _context = context;
+            env = _env;
         }
 
         // GET: Certifications
@@ -74,10 +79,39 @@ namespace EurecertV2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CompanyId,ReportCode,ImprintCode,InspectorPersonId,InspectionDate,MarketingMethodId,ApplicationMethodId,IsPresentationDone,PresentationDate,FirstContactDate,FirstContactPersonId,FirstInspectionDate,ApproveDate,DataSendDate,ReportReturnDate,ReportPreparedBy,InspectionReport,ReportRecievedDateByCompany,CompanyAnswerToReport,StartDateForMissings,FinishDateForMissings,LastInspectionDate,CertificationResultId,QualityCertificateDate,QualityCertificateEndDate,CertificationInputsCompleteDate,CertificationInputsUserId,InspectorNotes,ProposedBudget,InspectionFile,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Certification certification)
+        public async Task<IActionResult> Create([Bind("Id,CompanyId,ReportCode,ImprintCode,InspectorPersonId,InspectionDate,MarketingMethodId,ApplicationMethodId,IsPresentationDone,PresentationDate,FirstContactDate,FirstContactPersonId,FirstInspectionDate,ApproveDate,DataSendDate,ReportReturnDate,ReportPreparedBy,InspectionReport,ReportRecievedDateByCompany,CompanyAnswerToReport,StartDateForMissings,FinishDateForMissings,LastInspectionDate,CertificationResultId,QualityCertificateDate,QualityCertificateEndDate,CertificationInputsCompleteDate,CertificationInputsUserId,InspectorNotes,ProposedBudget,InspectionFile,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Certification certification, IFormFile InspectionReportUpload, IFormFile InspectionFileUpload)
         {
+                      
+           
             if (ModelState.IsValid)
             {
+
+                if (InspectionReportUpload != null && InspectionReportUpload.Length > 0)
+                {
+
+                    string InspectionReportName = new Random().Next(9999).ToString() + InspectionReportUpload.FileName;
+
+
+                    using (var stream = new FileStream(env.WebRootPath + "\\uploads\\inspectionReportFiles\\" + InspectionReportName, FileMode.Create))
+                    {
+                        InspectionReportUpload.CopyTo(stream);
+                    }
+                    certification.InspectionReport = InspectionReportName;
+                }
+
+                if (InspectionFileUpload != null && InspectionFileUpload.Length > 0)
+                {
+
+                    string InspectionFileName = new Random().Next(9999).ToString() + InspectionFileUpload.FileName;
+
+
+                    using (var stream = new FileStream(env.WebRootPath + "\\uploads\\inspectionFiles\\" + InspectionFileName, FileMode.Create))
+                    {
+                        InspectionFileUpload.CopyTo(stream);
+                    }
+                    certification.InspectionFile = InspectionFileName;
+                }
+
                 _context.Add(certification);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -120,19 +154,48 @@ namespace EurecertV2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CompanyId,ReportCode,ImprintCode,InspectorPersonId,InspectionDate,MarketingMethodId,ApplicationMethodId,IsPresentationDone,PresentationDate,FirstContactDate,FirstContactPersonId,FirstInspectionDate,ApproveDate,DataSendDate,ReportReturnDate,ReportPreparedBy,InspectionReport,ReportRecievedDateByCompany,CompanyAnswerToReport,StartDateForMissings,FinishDateForMissings,LastInspectionDate,CertificationResultId,QualityCertificateDate,QualityCertificateEndDate,CertificationInputsCompleteDate,CertificationInputsUserId,InspectorNotes,ProposedBudget,InspectionFile,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Certification certification)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CompanyId,ReportCode,ImprintCode,InspectorPersonId,InspectionDate,MarketingMethodId,ApplicationMethodId,IsPresentationDone,PresentationDate,FirstContactDate,FirstContactPersonId,FirstInspectionDate,ApproveDate,DataSendDate,ReportReturnDate,ReportPreparedBy,InspectionReport,ReportRecievedDateByCompany,CompanyAnswerToReport,StartDateForMissings,FinishDateForMissings,LastInspectionDate,CertificationResultId,QualityCertificateDate,QualityCertificateEndDate,CertificationInputsCompleteDate,CertificationInputsUserId,InspectorNotes,ProposedBudget,InspectionFile,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Certification certification,IFormFile InspectionReportUpload, IFormFile InspectionFileUpload)
         {
             if (id != certification.Id)
             {
                 return NotFound();
             }
-
+           
             if (ModelState.IsValid)
             {
                 try
                 {
+                   
+                  
+
+                    if (InspectionReportUpload != null && InspectionReportUpload.Length > 0)
+                    {
+
+                        string InspectionReportName = new Random().Next(9999).ToString() + InspectionReportUpload.FileName;
+
+
+                        using (var stream = new FileStream(env.WebRootPath + "\\uploads\\inspectionReportFiles\\" + InspectionReportName, FileMode.Create))
+                            {
+                                InspectionReportUpload.CopyTo(stream);
+                            }
+                        certification.InspectionReport = InspectionReportName;
+                    }
+
+                    if (InspectionFileUpload != null && InspectionFileUpload.Length > 0)
+                    {
+
+                        string InspectionFileName = new Random().Next(9999).ToString() + InspectionFileUpload.FileName;
+
+
+                        using (var stream = new FileStream(env.WebRootPath + "\\uploads\\inspectionFiles\\" + InspectionFileUpload, FileMode.Create))
+                        {
+                            InspectionFileUpload.CopyTo(stream);
+                        }
+                        certification.InspectionFile = InspectionFileName;
+                    }
                     _context.Update(certification);
                     await _context.SaveChangesAsync();
+                    
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -188,9 +251,18 @@ namespace EurecertV2.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var certification = await _context.Certifications.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Certifications.Remove(certification);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+            try
+            {
+                
+                _context.Certifications.Remove(certification);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("Delete", "Silme Ýþlemi Esnasýnda Hata Oluþtu.Bu Kayýdýn Baþka Kayýtlar Tarafýndan Kullanýlmadýðýna Emin Olun !!");
+                return View(certification);
+            }
         }
 
         private bool CertificationExists(int id)

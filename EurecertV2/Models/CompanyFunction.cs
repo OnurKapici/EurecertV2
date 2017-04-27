@@ -10,7 +10,7 @@ namespace EurecertV2.Models
     {
         public int Id { get; set; }
         [StringLength(200)]
-        [Required]
+        [Required(ErrorMessage = "Kurum işlevi alanı boş bırakılamaz.")]
         [Display(Name = "Kurum İşlevi")]
         public string Name { get; set; }
         [StringLength(200)]
