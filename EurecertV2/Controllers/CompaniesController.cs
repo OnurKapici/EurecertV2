@@ -65,6 +65,8 @@ namespace EurecertV2.Controllers
             ViewData["SalesPersonId"] = new SelectList(_context.ApplicationUser, "Id", "FullName");
             ViewData["SourceId"] = new SelectList(_context.Sources, "Id", "Name");
             var model = new Company();
+            model.CreateDate = DateTime.Now;
+            model.UpdateDate = DateTime.Now;
             model.CreatedBy = User.Identity.Name;
             model.UpdatedBy = User.Identity.Name;
             return View(model);
@@ -142,18 +144,6 @@ namespace EurecertV2.Controllers
             {
                 try
                 {
-                    if (ProposalFileUpload != null && ProposalFileUpload.Length > 0)
-                    {
-
-                        string ProposalFileName = new Random().Next(9999).ToString() + ProposalFileUpload.FileName;
-
-
-                        using (var stream = new FileStream(env.WebRootPath + "\\uploads\\ProposalFiles\\" + ProposalFileName, FileMode.Create))
-                        {
-                            ProposalFileUpload.CopyTo(stream);
-                        }
-                        company.ProposalFile = ProposalFileName;
-                    }
                     _context.Update(company);
                     await _context.SaveChangesAsync();
                 }
