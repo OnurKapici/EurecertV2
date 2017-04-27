@@ -29,6 +29,7 @@ namespace EurecertV2.Data
             AddCertificationResult(context);
             AddMarketingMethod(context);
             AddEducationCategory(context);
+            AddServiceField(context);
 
 
 
@@ -44,6 +45,25 @@ namespace EurecertV2.Data
             newCountries.Add(new Country() { Name = "Diğer" });
 
             context.Countries.AddRange(newCountries);
+
+            context.SaveChanges();
+
+
+        }
+
+        public static void AddServiceField(ApplicationDbContext context)
+        {
+            IList<ServiceField> newServiceFields = new List<ServiceField>();
+
+            newServiceFields.Add(new ServiceField() { Name = "Yapımı Devam Eden Projeler" });
+            newServiceFields.Add(new ServiceField() { Name = "Yapımı Tamamlanmış Projeler" });
+            newServiceFields.Add(new ServiceField() { Name = "İç Mekan Projeleri" });
+            newServiceFields.Add(new ServiceField() { Name = "Dış Mekan Projeleri" });
+            newServiceFields.Add(new ServiceField() { Name = "Restorasyon / Yenileme Projeleri" });
+            newServiceFields.Add(new ServiceField() { Name = "Hizmet Danışmanlığı" });
+            newServiceFields.Add(new ServiceField() { Name = "Ürün Danışmanlığı" });
+
+            context.ServiceFields.AddRange(newServiceFields);
 
             context.SaveChanges();
 
@@ -160,6 +180,8 @@ namespace EurecertV2.Data
 
 
         }
+
+
 
         public static void AddCompanyFunction(ApplicationDbContext context)
         {
