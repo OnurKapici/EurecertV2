@@ -59,7 +59,7 @@ namespace EurecertV2.Controllers
         // GET: Companies/Create
         public IActionResult Create()
         {
-            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name");
+            ViewData["CityId"] = new SelectList(_context.Cities.OrderBy(c=>c.Name), "Id", "Name");
             ViewData["CompanyFunctionId"] = new SelectList(_context.CompanyFunctions, "Id", "Name");
             ViewData["CountryId"] = new SelectList(_context.Countries, "Id", "Name");
             ViewData["SalesPersonId"] = new SelectList(_context.ApplicationUser, "Id", "FullName");
@@ -99,7 +99,7 @@ namespace EurecertV2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", company.CityId);
+            ViewData["CityId"] = new SelectList(_context.Cities.OrderBy(c => c.Name), "Id", "Name", company.CityId);
             ViewData["CompanyFunctionId"] = new SelectList(_context.CompanyFunctions, "Id", "Name", company.CompanyFunctionId);
             ViewData["CountryId"] = new SelectList(_context.Countries, "Id", "Name", company.CountryId);
             ViewData["SalesPersonId"] = new SelectList(_context.ApplicationUser, "Id", "FullName", company.SalesPersonId);
@@ -120,7 +120,7 @@ namespace EurecertV2.Controllers
             {
                 return NotFound();
             }
-            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", company.CityId);
+            ViewData["CityId"] = new SelectList(_context.Cities.OrderBy(c => c.Name), "Id", "Name", company.CityId);
             ViewData["CompanyFunctionId"] = new SelectList(_context.CompanyFunctions, "Id", "Name", company.CompanyFunctionId);
             ViewData["CountryId"] = new SelectList(_context.Countries, "Id", "Name", company.CountryId);
             ViewData["SalesPersonId"] = new SelectList(_context.ApplicationUser, "Id", "FullName", company.SalesPersonId);
@@ -166,7 +166,7 @@ namespace EurecertV2.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", company.CityId);
+            ViewData["CityId"] = new SelectList(_context.Cities.OrderBy(c => c.Name), "Id", "Name", company.CityId);
             ViewData["CompanyFunctionId"] = new SelectList(_context.CompanyFunctions, "Id", "Name", company.CompanyFunctionId);
             ViewData["CountryId"] = new SelectList(_context.Countries, "Id", "Name", company.CountryId);
             ViewData["SalesPersonId"] = new SelectList(_context.ApplicationUser, "Id", "FullName", company.SalesPersonId);
