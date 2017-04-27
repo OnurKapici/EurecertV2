@@ -77,10 +77,7 @@ namespace EurecertV2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,CompanyId,ReportCode,ApplicationMethodId,IsPresentationDone,PresentationDate,PresentationFile,MarketingMethodId,ProposedBudget,ProposalDate,CompanyRequests,ConsultancyStartDate,ConsultancyFinishDate,ReportCreateDate,ReportCreatedById,ReportSendDate,ConsultantNotes,CreateDate,CreatedBy,UpdateDate,UpdatedBy,ServiceFields")] Consultancy consultancy,IFormFile presentationUpload)
         {
-            if(presentationUpload != null && presentationUpload.Length > 0 && ".ppt,.pptx,.pptm,.doc,.docx,.pdf".Contains(Path.GetExtension(presentationUpload.FileName)) == false)
-            {
-                ModelState.AddModelError("presentationUpload", "Sunum dosyasý .ppt, .pptx, .pptm, .doc, .docx, .pdf uzantýlarýnda olmalýdýr");
-            }
+         
             if (ModelState.IsValid)
             {
                 
@@ -153,10 +150,7 @@ namespace EurecertV2.Controllers
             {
                 return NotFound();
             }
-            if (presentationUpload != null && presentationUpload.Length > 0 && ".ppt,.pptx,.pptm,.doc,.docx,.pdf".Contains(Path.GetExtension(presentationUpload.FileName)) == false)
-            {
-                ModelState.AddModelError("presentationUpload", "Sunum dosyasý .ppt, .pptx, .pptm, .doc, .docx, .pdf uzantýlarýnda olmalýdýr");
-            }
+         
             
             if (ModelState.IsValid)
             {

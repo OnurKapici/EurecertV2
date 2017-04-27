@@ -77,10 +77,7 @@ namespace EurecertV2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,CompanyFunctionId,CountryId,CityId,Address,Email,Phone,Website,SourceId,SalesPersonId,ProposalAbstract,ProposalFile,ProposalResult,DownPayment,TotalAmount,CompanyRequests,VisitCount,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Company company, IFormFile ProposalFileUpload)
         {
-            if (ProposalFileUpload != null && ProposalFileUpload.Length > 0 && ".ppt,.pptx,.pptm,.doc,.docx,.pdf".Contains(Path.GetExtension(ProposalFileUpload.FileName)) == false)
-            {
-                ModelState.AddModelError("InspectionFileUpload", "Rapor dosyasý .ppt, .pptx, .pptm, .doc, .docx, .pdf uzantýlarýnda olmalýdýr");
-            }
+            
             if (ModelState.IsValid)
             {
                 if (ProposalFileUpload != null && ProposalFileUpload.Length > 0)
@@ -139,10 +136,7 @@ namespace EurecertV2.Controllers
             {
                 return NotFound();
             }
-            if (ProposalFileUpload != null && ProposalFileUpload.Length > 0 && ".ppt,.pptx,.pptm,.doc,.docx,.pdf".Contains(Path.GetExtension(ProposalFileUpload.FileName)) == false)
-            {
-                ModelState.AddModelError("InspectionFileUpload", "Rapor dosyasý .ppt, .pptx, .pptm, .doc, .docx, .pdf uzantýlarýnda olmalýdýr");
-            }
+          
 
             if (ModelState.IsValid)
             {
