@@ -70,6 +70,9 @@ namespace EurecertV2.Controllers
             var model = new Consultancy();
             model.CreatedBy = User.Identity.Name;
             model.UpdatedBy = User.Identity.Name;
+            model.UpdateDate = DateTime.Now;
+            model.CreateDate = DateTime.Now;
+
             return View(model);
         }
 
@@ -160,6 +163,7 @@ namespace EurecertV2.Controllers
                 
                 try
                 {
+                   
                     if (presentationUpload != null && presentationUpload.Length > 0)
                     {          
                         string presentationName = new Random().Next(9999).ToString() + presentationUpload.FileName;
@@ -169,6 +173,7 @@ namespace EurecertV2.Controllers
                         }
                         consultancy.PresentationFile = presentationName;
                     }
+                    
                     _context.ConsultancyServiceFields.RemoveRange(_context.ConsultancyServiceFields.Where(w => w.ConsultancyId == id).ToList());
                     _context.SaveChanges();
                     _context.Update(consultancy);
@@ -181,6 +186,8 @@ namespace EurecertV2.Controllers
                         }
                         
                     }
+                    consultancy.UpdatedBy = User.Identity.Name;
+                    consultancy.UpdateDate = DateTime.Now;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
