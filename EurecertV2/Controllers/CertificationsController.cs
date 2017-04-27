@@ -82,14 +82,7 @@ namespace EurecertV2.Controllers
         public async Task<IActionResult> Create([Bind("Id,CompanyId,ReportCode,ImprintCode,InspectorPersonId,InspectionDate,MarketingMethodId,ApplicationMethodId,IsPresentationDone,PresentationDate,FirstContactDate,FirstContactPersonId,FirstInspectionDate,ApproveDate,DataSendDate,ReportReturnDate,ReportPreparedBy,InspectionReport,ReportRecievedDateByCompany,CompanyAnswerToReport,StartDateForMissings,FinishDateForMissings,LastInspectionDate,CertificationResultId,QualityCertificateDate,QualityCertificateEndDate,CertificationInputsCompleteDate,CertificationInputsUserId,InspectorNotes,ProposedBudget,InspectionFile,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Certification certification, IFormFile InspectionReportUpload, IFormFile InspectionFileUpload)
         {
                       
-            if (InspectionReportUpload != null && InspectionReportUpload.Length > 0 && ".ppt,.pptx,.pptm,.doc,.docx,.pdf".Contains(Path.GetExtension(InspectionReportUpload.FileName)) == false)
-            {
-                ModelState.AddModelError("InspectionReportUpload", "Rapor dosyasý .ppt, .pptx, .pptm, .doc, .docx, .pdf uzantýlarýnda olmalýdýr");
-            }
-            if (InspectionFileUpload != null && InspectionFileUpload.Length > 0 && ".ppt,.pptx,.pptm,.doc,.docx,.pdf".Contains(Path.GetExtension(InspectionFileUpload.FileName)) == false)
-            {
-                ModelState.AddModelError("InspectionFileUpload", "Rapor dosyasý .ppt, .pptx, .pptm, .doc, .docx, .pdf uzantýlarýnda olmalýdýr");
-            }
+           
             if (ModelState.IsValid)
             {
 
@@ -167,14 +160,7 @@ namespace EurecertV2.Controllers
             {
                 return NotFound();
             }
-            if (InspectionReportUpload != null && InspectionReportUpload.Length > 0 && ".ppt,.pptx,.pptm,.doc,.docx,.pdf".Contains(Path.GetExtension(InspectionReportUpload.FileName)) == false)
-            {
-                ModelState.AddModelError("InspectionReportUpload", "Rapor dosyasý .ppt, .pptx, .pptm, .doc, .docx, .pdf uzantýlarýnda olmalýdýr");
-            }
-            if (InspectionFileUpload != null && InspectionFileUpload.Length > 0 && ".ppt,.pptx,.pptm,.doc,.docx,.pdf".Contains(Path.GetExtension(InspectionFileUpload.FileName)) == false)
-            {
-                ModelState.AddModelError("InspectionFileUpload", "Rapor dosyasý .ppt, .pptx, .pptm, .doc, .docx, .pdf uzantýlarýnda olmalýdýr");
-            }
+           
             if (ModelState.IsValid)
             {
                 try
