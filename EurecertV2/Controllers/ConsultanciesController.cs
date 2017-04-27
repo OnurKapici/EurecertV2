@@ -42,12 +42,15 @@ namespace EurecertV2.Controllers
                 return NotFound();
             }
 
+            var service = _context.ServiceFields.ToList();
             var consultancy = await _context.Consultancies
                 .Include(c => c.ApplicationMethod)
                 .Include(c => c.Company)
                 .Include(c => c.MarketingMethod)
                 .Include(c => c.ReportCreatedBy)
+                .Include(c => c.ConsultancyServiceFields)
                 .SingleOrDefaultAsync(m => m.Id == id);
+            ViewBag.ServiceFields = service;
             if (consultancy == null)
             {
                 return NotFound();
