@@ -66,8 +66,9 @@
         <div class="form-group">
             <label asp-for="PresentationFile" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <label class="btn-block btn-default btn-file">
-                    <input asp-for="PresentationFile" class="form-control" type="file" name="presentationUpload" />
+                <input asp-for="PresentationFile" class="form-control" />
+                <label class="btn btn-default btn-file">
+                    <input type="file" name="presentationUpload" accept=".ppt,.pptx,.pptm,.doc,.docx,.pdf" hidden>
                 </label>
                 <span asp-validation-for="PresentationFile" class="text-danger"></span>
             </div>
@@ -146,6 +147,17 @@
             <div class="col-md-10">
                 <input asp-for="ConsultantNotes" class="form-control" />
                 <span asp-validation-for="ConsultantNotes" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ConsultancyServiceFields" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                @foreach (var serviceField in (IEnumerable<SelectListItem>)ViewBag.ServiceFields)
+                {
+                    <input type="checkbox" name="ServiceFields[]" value="@serviceField.Value" checked="@serviceField.Selected" /> @serviceField.Text
+                    <br />
+                }
+                <span asp-validation-for="ConsultancyServiceFields" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">

@@ -21,9 +21,12 @@
         <div class="form-group">
             <label asp-for="CountryId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="CountryId" class ="form-control" asp-items="ViewBag.CountryId">
-                    <option value="">(Seçiniz)</option>
-                </select>
+                <div class="input-group">
+                    <select asp-for="CountryId" class="form-control" asp-items="ViewBag.CountryId">
+                        <option value="">(Seçiniz)</option>
+                    </select>
+                    <span class="input-group-btn"><a class="btn btn-default" asp-controller="Countries" asp-action="Index">...</a></span>
+                </div>
             </div>
         </div>
         <div class="form-group">

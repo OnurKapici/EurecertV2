@@ -13,6 +13,7 @@ namespace EurecertV2.Models
         {
             CreateDate = DateTime.Now;
             UpdateDate = DateTime.Now;
+            ConsultancyServiceFields = new HashSet<ConsultancyServiceField>();
         }
         public int Id { get; set; }
         [Display(Name = "Kurum")]
@@ -71,6 +72,8 @@ namespace EurecertV2.Models
         public string ConsultantNotes { get; set; }
         [Display(Name = "Hizmet Alanları")]
         public virtual ICollection<ConsultancyServiceField> ConsultancyServiceFields { get; set; }
+        [NotMapped]
+        public int[] ServiceFields { get; set; }
         [Display(Name = "Oluşturulma Tarihi")]
         public DateTime CreateDate { get; set; }
         [StringLength(200)]
