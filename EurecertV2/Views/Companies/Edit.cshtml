@@ -147,6 +147,17 @@
             </div>
         </div>
         <div class="form-group">
+            <label asp-for="CompanyServices" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                @foreach (var service in (IEnumerable<SelectListItem>)ViewBag.Services)
+                {
+                    <input type="checkbox" name="Services[]" value="@service.Value" checked="@service.Selected" /> @service.Text
+                    <br />
+                }
+                <span asp-validation-for="CompanyServices" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
             <label asp-for="CompanyRequests" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <textarea rows="6" asp-for="CompanyRequests" class="form-control"></textarea>
