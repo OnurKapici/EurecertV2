@@ -238,7 +238,7 @@ namespace EurecertV2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var consultancy = await _context.Consultancies.SingleOrDefaultAsync(m => m.Id == id);
+            var consultancy = await _context.Consultancies.Include("ConsultancyServiceFields").Include("ConsultancyServiceFields.ServiceField").SingleOrDefaultAsync(m => m.Id == id);
             try
             {
                 consultancy.ConsultancyServiceFields.Clear();
@@ -247,9 +247,9 @@ namespace EurecertV2.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                ModelState.AddModelError("Delete", "Silme Ýþlemi Esnasýnda Hata Oluþtu.Bu Kayýdýn Baþka Kayýtlar Tarafýndan Kullanýlmadýðýna Emin Olun !!");
+                ModelState.AddModelError("Delete", "Silme Ýþlemi Esnasýnda Hata Oluþtu.Bu Kayýdýn Baþka Kayýtlar Tarafýndan Kullanýlmadýðýndan Emin Olun !!");
                 return View(consultancy);
             }
         }

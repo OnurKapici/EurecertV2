@@ -319,10 +319,49 @@ License: You must have a valid license purchased only from themeforest(the above
                             <li>
                                 @switch (ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()) {
                                     case "companies":
-                                        @Html.Raw("<a href='/"+ViewContext.RouteData.Values["controller"].ToString()+"/Index'>Kurumlar</a>");
+                                        @Html.Raw("Kurumlar");
+                                        break;
+                                    case "consultancies":
+                                        @Html.Raw("Danışmanlıklar");
                                         break;
                                     case "certifications":
                                         @Html.Raw("Belgelendirmeler");
+                                        break;
+                                    case "countries":
+                                        @Html.Raw("Ülkeler");
+                                        break;
+                                    case "educations":
+                                        @Html.Raw("Eğitimler");
+                                        break;
+                                    case "cities":
+                                        @Html.Raw("Şehirler");
+                                        break;
+                                    case "applicationmethods":
+                                        @Html.Raw("BaşvuruYöntemleri");
+                                        break;
+                                    case "marketingmethods":
+                                        @Html.Raw("TanıtımYöntemleri");
+                                        break;
+                                    case "sources":
+                                        @Html.Raw("HaberdarOlmaYöntemleri");
+                                        break;
+                                    case "companyfunctions":
+                                        @Html.Raw("Kurumİşlevleri");
+                                        break;
+                                    case "certificationresults":
+                                        @Html.Raw("BelgelendirmeSonuçları");
+                                        break;
+                                    case "educationcategories":
+                                        @Html.Raw("EğitimTipleri");
+                                        break;
+                                    case "services":
+                                        @Html.Raw("Hizmetler");
+                                        break;
+                                    case "servicefields":
+                                        @Html.Raw("HizmetAlanları");
+                                        break;
+                                    case "applicationusers":
+                                        @Html.Raw("Kişiler");
                                         break;
                                     default:
                                         @Html.Raw(ViewContext.RouteData.Values["controller"].ToString());

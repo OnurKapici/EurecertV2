@@ -71,6 +71,24 @@
             @Html.DisplayFor(model => model.TotalAmount)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.CompanyServices)
+        </dt>
+        <dd>
+
+            @foreach (var service in (IEnumerable<Service>)ViewBag.Services)
+            {
+                if (Model.CompanyServices.FirstOrDefault(c => c.ServiceId == service.Id) != null)
+                {
+                    <text>
+                    @service.Name<br />
+                    </text>
+                }
+
+            }
+
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.CompanyRequests)
         </dt>
         <dd>

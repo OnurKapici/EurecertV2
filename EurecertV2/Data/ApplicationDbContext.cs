@@ -45,7 +45,7 @@ namespace EurecertV2.Data
             builder.Entity<ConsultancyServiceField>()
                 .HasOne(f => f.Consultancy)
                 .WithMany(mu => mu.ConsultancyServiceFields)
-                .HasForeignKey(f => f.ConsultancyId).OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(f => f.ConsultancyId).OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<ConsultancyServiceField>()
                 .HasOne(f => f.ServiceField)
@@ -58,7 +58,7 @@ namespace EurecertV2.Data
             builder.Entity<CompanyService>()
                 .HasOne(f => f.Company)
                 .WithMany(mu => mu.CompanyServices)
-                .HasForeignKey(f => f.CompanyId).OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(f => f.CompanyId).OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<CompanyService>()
                 .HasOne(f => f.Service)
