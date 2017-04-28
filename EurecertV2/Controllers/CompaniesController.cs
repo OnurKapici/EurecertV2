@@ -131,7 +131,7 @@ namespace EurecertV2.Controllers
                 return NotFound();
             }
 
-            var company = await _context.Companies.SingleOrDefaultAsync(m => m.Id == id);
+            var company = await _context.Companies.Include("CompanyServices").SingleOrDefaultAsync(m => m.Id == id);
             if (company == null)
             {
                 return NotFound();
@@ -243,7 +243,7 @@ namespace EurecertV2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var company = await _context.Companies.SingleOrDefaultAsync(m => m.Id == id);
+            var company = await _context.Companies.Include("CompanyServices").Include("CompanyServices.Service").SingleOrDefaultAsync(m => m.Id == id);
             try
             {
                 company.CompanyServices.Clear();
@@ -254,7 +254,7 @@ namespace EurecertV2.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("Delete", "Silme Ýþlemi Esnasýnda Hata Oluþtu.Bu Kayýdýn Baþka Kayýtlar Tarafýndan Kullanýlmadýðýna Emin Olun !!");
+                ModelState.AddModelError("Delete", "Silme Ýþlemi Esnasýnda Hata Oluþtu.Bu Kayýdýn Baþka Kayýtlar Tarafýndan Kullanýlmadýðýndan Emin Olun !!");
                 return View(company);
             }
 
