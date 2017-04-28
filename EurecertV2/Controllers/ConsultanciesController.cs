@@ -242,6 +242,7 @@ namespace EurecertV2.Controllers
             try
             {
                 consultancy.ConsultancyServiceFields.Clear();
+                _context.SaveChanges();
                 _context.Consultancies.Remove(consultancy);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
