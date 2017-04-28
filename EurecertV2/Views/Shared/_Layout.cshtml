@@ -102,24 +102,29 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                 </li>
                                 
-                                <li>
-                                    <a asp-controller="Account" asp-action="Logout">
-                                        <i class="icon-key"></i> Log Out
-                                    </a>
-                                </li>
+                                <li >
+                                    
+                                        <a href="javascript:void(0);" onclick="document.getElementById('logoutForm').submit();">
+                                            <i class="icon-key"></i> Çıkış
+                                        </a>
+                                       
+</li>
                             </ul>
                         </li>
                         <!-- END USER LOGIN DROPDOWN -->
                         <!-- BEGIN QUICK SIDEBAR TOGGLER -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-quick-sidebar-toggler">
-                            <a asp-controller="Account" asp-action="Logout" class="dropdown-toggle">
-                                <i class="icon-logout"></i>
-                            </a>
+                        <li>
+                            <a href="javascript:void(0);" onclick="document.getElementById('logoutForm').submit();"><i class="icon-logout"></i></a>
+                           
+                           
                         </li>
                         <!-- END QUICK SIDEBAR TOGGLER -->
                     </ul>
-                </div>
+                    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
+                        </form>
+</div>
                 <!-- END TOP NAVIGATION MENU -->
             </div>
             <!-- END HEADER INNER -->
@@ -172,49 +177,49 @@ License: You must have a valid license purchased only from themeforest(the above
                         <li class="heading">
                             <h3 class="uppercase">Modüller</h3>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="companies"?"active":string.Empty) ">
                             <a href="/Companies/Index" class="nav-link nav-toggle">
                                 <i class="icon-diamond"></i>
                                 <span class="title">Kurumlar</span>
                         
                             </a>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="certifications"?"active":string.Empty)">
                             <a href="/Certifications/Index" class="nav-link nav-toggle">
                                 <i class="icon-puzzle"></i>
                                 <span class="title">Belgelendirmeler</span>
                             
                             </a>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="consultancies"?"active":string.Empty)">
                             <a href="/Consultancies/Index" class="nav-link nav-toggle">
                                 <i class="icon-settings"></i>
                                 <span class="title">Danışmanlıklar</span>
                                
                             </a>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="educations"?"active":string.Empty)">
                             <a href="/Educations/Index" class="nav-link nav-toggle">
                                 <i class="icon-bulb"></i>
                                 <span class="title">Eğitimler</span>
                               
                             </a>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="countries"?"active":string.Empty)">
                             <a href="/Countries/Index" class="nav-link nav-toggle">
                                 <i class="icon-briefcase"></i>
                                 <span class="title">Ülkeler</span>
                               
                             </a>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="cities"?"active":string.Empty)">
                             <a href="/Cities/Index" class="nav-link nav-toggle">
                                 <i class="icon-wallet"></i>
                                 <span class="title">Şehirler</span>
                               
                             </a>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="applicationmethods"?"active":string.Empty)">
                             <a href="/ApplicationMethods/Index" class="nav-link nav-toggle">
                                 <i class="icon-bar-chart"></i>
                                 <span class="title">Başvuru Yöntemleri</span>
@@ -222,7 +227,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                         
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="marketingmethods"?"active":string.Empty)">
                             <a href="/MarketingMethods/Index" class="nav-link nav-toggle">
                                 <i class="icon-pointer"></i>
                                 <span class="title">Tanıtım Yöntemleri</span>
@@ -231,7 +236,7 @@ License: You must have a valid license purchased only from themeforest(the above
                    
                         </li>
                   
-                        <li class="nav-item ">
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="sources"?"active":string.Empty)">
                             <a href="/Sources/Index" class="nav-link nav-toggle">
                                 <i class="icon-layers"></i>
                                 <span class="title">Haberdar Olma Şekilleri</span>
@@ -239,7 +244,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
           
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="companyfunctions"?"active":string.Empty)">
                             <a href="/CompanyFunctions/Index" class="nav-link nav-toggle">
                                 <i class="icon-feed"></i>
                                 <span class="title">Kurum İşlevleri</span>
@@ -247,7 +252,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                     
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="certificationresults"?"active":string.Empty)">
                             <a href="/CertificationResults/Index" class="nav-link nav-toggle">
                                 <i class="icon-paper-plane"></i>
                                 <span class="title">Belgelendirme Sonuçları</span>
@@ -255,7 +260,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                    
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="educationcategories"?"active":string.Empty)">
                             <a href="/EducationCategories/Index" class="nav-link nav-toggle">
                                 <i class=" icon-wrench"></i>
                                 <span class="title">Eğitim Tipleri</span>
@@ -264,7 +269,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                         </li>
                         
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="services"?"active":string.Empty)">
                             <a href="/Services/Index" class="nav-link nav-toggle">
                                 <i class="icon-basket"></i>
                                 <span class="title">Hizmetler</span>
@@ -272,7 +277,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                   
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="servicefields"?"active":string.Empty)">
                             <a href="/ServiceFields/Index" class="nav-link nav-toggle">
                                 <i class="icon-docs"></i>
                                 <span class="title">Hizmet Alanları</span>
@@ -280,7 +285,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="applicationUsers"?"active":string.Empty)">
                             <a href="/ApplicationUsers/Index" class="nav-link nav-toggle">
                                 <i class="icon-user"></i>
                                 <span class="title">Kişiler</span>
@@ -312,12 +317,51 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <i class="fa fa-circle"></i>
                             </li>
                             <li>
-                                @switch (ViewContext.RouteData.Values["controller"].ToString().ToLower()) {
+                                @switch (ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()) {
                                     case "companies":
-                                        @Html.Raw("<a href='/"+ViewContext.RouteData.Values["controller"].ToString()+"/Index'>Kurumlar</a>");
+                                        @Html.Raw("Kurumlar");
+                                        break;
+                                    case "consultancies":
+                                        @Html.Raw("Danışmanlıklar");
                                         break;
                                     case "certifications":
                                         @Html.Raw("Belgelendirmeler");
+                                        break;
+                                    case "countries":
+                                        @Html.Raw("Ülkeler");
+                                        break;
+                                    case "educations":
+                                        @Html.Raw("Eğitimler");
+                                        break;
+                                    case "cities":
+                                        @Html.Raw("Şehirler");
+                                        break;
+                                    case "applicationmethods":
+                                        @Html.Raw("BaşvuruYöntemleri");
+                                        break;
+                                    case "marketingmethods":
+                                        @Html.Raw("TanıtımYöntemleri");
+                                        break;
+                                    case "sources":
+                                        @Html.Raw("HaberdarOlmaYöntemleri");
+                                        break;
+                                    case "companyfunctions":
+                                        @Html.Raw("Kurumİşlevleri");
+                                        break;
+                                    case "certificationresults":
+                                        @Html.Raw("BelgelendirmeSonuçları");
+                                        break;
+                                    case "educationcategories":
+                                        @Html.Raw("EğitimTipleri");
+                                        break;
+                                    case "services":
+                                        @Html.Raw("Hizmetler");
+                                        break;
+                                    case "servicefields":
+                                        @Html.Raw("HizmetAlanları");
+                                        break;
+                                    case "applicationusers":
+                                        @Html.Raw("Kişiler");
                                         break;
                                     default:
                                         @Html.Raw(ViewContext.RouteData.Values["controller"].ToString());
@@ -327,7 +371,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                         <i class="fa fa-circle"></i>
                             </li>
                             <li>
-                                <span>@switch (ViewContext.RouteData.Values["action"].ToString().ToLower())
+                                <span>@switch (ViewContext.RouteData.Values["action"].ToString().ToLowerInvariant())
                                 {
                                     case "index":
                                         @Html.Raw("Tümü");
