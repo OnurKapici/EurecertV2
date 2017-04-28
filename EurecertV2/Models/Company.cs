@@ -14,6 +14,7 @@ namespace EurecertV2.Models
             VisitCount = 0;
             CreateDate = DateTime.Now;
             UpdateDate = DateTime.Now;
+            CompanyServices = new HashSet<CompanyService>();
         }
 
         public int Id { get; set; }
@@ -74,6 +75,8 @@ namespace EurecertV2.Models
         public decimal? TotalAmount { get; set; }
         [Display(Name = "Verilen Hizmetler")]
         public virtual ICollection<CompanyService> CompanyServices { get; set; }
+        [NotMapped]
+        public int[] Services { get; set; }
         [Display(Name = "Kurumun Talepleri")]
         [DataType(DataType.MultilineText)]
         public string CompanyRequests { get; set; }
