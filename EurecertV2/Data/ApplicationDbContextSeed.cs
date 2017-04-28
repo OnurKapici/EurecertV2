@@ -30,7 +30,7 @@ namespace EurecertV2.Data
             AddMarketingMethod(context);
             AddEducationCategory(context);
             AddServiceField(context);
-
+            AddServices(context);
 
 
 
@@ -64,6 +64,22 @@ namespace EurecertV2.Data
             newServiceFields.Add(new ServiceField() { Name = "Ürün Danışmanlığı" });
 
             context.ServiceFields.AddRange(newServiceFields);
+
+            context.SaveChanges();
+
+
+        }
+
+        public static void AddServices(ApplicationDbContext context)
+        {
+            IList<Service> newServices = new List<Service>();
+
+            newServices.Add(new Service() { Name = "Belgelendirme Hizmeti" });
+            newServices.Add(new Service() { Name = "Danışmanlık Hizmeti" });
+            newServices.Add(new Service() { Name = "Eğitim Hizmeti" });
+            
+
+            context.Services.AddRange(newServices);
 
             context.SaveChanges();
 
