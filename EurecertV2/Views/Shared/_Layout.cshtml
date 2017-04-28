@@ -184,42 +184,42 @@ License: You must have a valid license purchased only from themeforest(the above
                         
                             </a>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="certifications"?"active":string.Empty)">
                             <a href="/Certifications/Index" class="nav-link nav-toggle">
                                 <i class="icon-puzzle"></i>
                                 <span class="title">Belgelendirmeler</span>
                             
                             </a>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="consultancies"?"active":string.Empty)">
                             <a href="/Consultancies/Index" class="nav-link nav-toggle">
                                 <i class="icon-settings"></i>
                                 <span class="title">Danışmanlıklar</span>
                                
                             </a>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="educations"?"active":string.Empty)">
                             <a href="/Educations/Index" class="nav-link nav-toggle">
                                 <i class="icon-bulb"></i>
                                 <span class="title">Eğitimler</span>
                               
                             </a>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="countries"?"active":string.Empty)">
                             <a href="/Countries/Index" class="nav-link nav-toggle">
                                 <i class="icon-briefcase"></i>
                                 <span class="title">Ülkeler</span>
                               
                             </a>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="cities"?"active":string.Empty)">
                             <a href="/Cities/Index" class="nav-link nav-toggle">
                                 <i class="icon-wallet"></i>
                                 <span class="title">Şehirler</span>
                               
                             </a>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="applicationmethods"?"active":string.Empty)">
                             <a href="/ApplicationMethods/Index" class="nav-link nav-toggle">
                                 <i class="icon-bar-chart"></i>
                                 <span class="title">Başvuru Yöntemleri</span>
@@ -227,7 +227,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                         
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="marketingmethods"?"active":string.Empty)">
                             <a href="/MarketingMethods/Index" class="nav-link nav-toggle">
                                 <i class="icon-pointer"></i>
                                 <span class="title">Tanıtım Yöntemleri</span>
@@ -236,7 +236,7 @@ License: You must have a valid license purchased only from themeforest(the above
                    
                         </li>
                   
-                        <li class="nav-item ">
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="sources"?"active":string.Empty)">
                             <a href="/Sources/Index" class="nav-link nav-toggle">
                                 <i class="icon-layers"></i>
                                 <span class="title">Haberdar Olma Şekilleri</span>
@@ -244,7 +244,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
           
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="companyfunctions"?"active":string.Empty)">
                             <a href="/CompanyFunctions/Index" class="nav-link nav-toggle">
                                 <i class="icon-feed"></i>
                                 <span class="title">Kurum İşlevleri</span>
@@ -252,7 +252,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                     
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="certificationresults"?"active":string.Empty)">
                             <a href="/CertificationResults/Index" class="nav-link nav-toggle">
                                 <i class="icon-paper-plane"></i>
                                 <span class="title">Belgelendirme Sonuçları</span>
@@ -260,7 +260,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                    
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="educationcategories"?"active":string.Empty)">
                             <a href="/EducationCategories/Index" class="nav-link nav-toggle">
                                 <i class=" icon-wrench"></i>
                                 <span class="title">Eğitim Tipleri</span>
@@ -269,7 +269,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                         </li>
                         
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="services"?"active":string.Empty)">
                             <a href="/Services/Index" class="nav-link nav-toggle">
                                 <i class="icon-basket"></i>
                                 <span class="title">Hizmetler</span>
@@ -277,7 +277,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                   
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="servicefields"?"active":string.Empty)">
                             <a href="/ServiceFields/Index" class="nav-link nav-toggle">
                                 <i class="icon-docs"></i>
                                 <span class="title">Hizmet Alanları</span>
@@ -285,7 +285,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </a>
                             
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString().ToLowerInvariant()=="applicationUsers"?"active":string.Empty)">
                             <a href="/ApplicationUsers/Index" class="nav-link nav-toggle">
                                 <i class="icon-user"></i>
                                 <span class="title">Kişiler</span>
