@@ -6,7 +6,7 @@
 
 <h2>Oluştur</h2>
 
-<form asp-action="Create">
+<form asp-action="Create" asp-controller="Certifications" method="post" enctype="multipart/form-data">
     <div class="form-horizontal">
         <h4>Belgelendirme</h4>
         <hr />
@@ -147,144 +147,147 @@
         <div class="form-group">
             <label asp-for="InspectionReport" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="InspectionReport" class="form-control" />
+                <label class="btn-block btn-default btn-file">
+                    <input asp-for="InspectionReport" class="form-control" type="file" name="InspectionReportUpload" accept=".ppt,.pptx,.pptm,.doc,.docx,.pdf" />
+                </label>
                 <span asp-validation-for="InspectionReport" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group">
-            <label asp-for="ReportRecievedDateByCompany" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="ReportRecievedDateByCompany" class="form-control" />
-                <span asp-validation-for="ReportRecievedDateByCompany" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="CompanyAnswerToReport" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="CompanyAnswerToReport" class="form-control" />
-                <span asp-validation-for="CompanyAnswerToReport" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="StartDateForMissings" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="StartDateForMissings" class="form-control" />
-                <span asp-validation-for="StartDateForMissings" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="FinishDateForMissings" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="FinishDateForMissings" class="form-control" />
-                <span asp-validation-for="FinishDateForMissings" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="LastInspectionDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="LastInspectionDate" class="form-control" />
-                <span asp-validation-for="LastInspectionDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="CertificationResultId" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <div class="input-group">
-                    <select asp-for="CertificationResultId" class="form-control" asp-items="ViewBag.CertificationResultId"></select>
-                    <span class="input-group-btn"><a class="btn btn-default" asp-controller="CertificationResults" asp-action="Index">...</a></span>
+            <div class="form-group">
+                <label asp-for="ReportRecievedDateByCompany" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="ReportRecievedDateByCompany" class="form-control" />
+                    <span asp-validation-for="ReportRecievedDateByCompany" class="text-danger"></span>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="QualityCertificateDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="QualityCertificateDate" class="form-control" />
-                <span asp-validation-for="QualityCertificateDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="QualityCertificateEndDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="QualityCertificateEndDate" class="form-control" />
-                <span asp-validation-for="QualityCertificateEndDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="CertificationInputsCompleteDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="CertificationInputsCompleteDate" class="form-control" />
-                <span asp-validation-for="CertificationInputsCompleteDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="CertificationInputsUserId" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <div class="input-group">
-                    <select asp-for="CertificationInputsUserId" class="form-control" asp-items="ViewBag.CertificationInputsUserId">
-                        <option value="">(Seçiniz)</option>
-                    </select>
-                    <span class="input-group-btn"><a class="btn btn-default" asp-controller="ApplicationUsers" asp-action="Index">...</a></span>
+            <div class="form-group">
+                <label asp-for="CompanyAnswerToReport" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="CompanyAnswerToReport" class="form-control" />
+                    <span asp-validation-for="CompanyAnswerToReport" class="text-danger"></span>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="InspectorNotes" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="InspectorNotes" class="form-control" />
-                <span asp-validation-for="InspectorNotes" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="StartDateForMissings" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="StartDateForMissings" class="form-control" />
+                    <span asp-validation-for="StartDateForMissings" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="ProposedBudget" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="ProposedBudget" class="form-control" />
-                <span asp-validation-for="ProposedBudget" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="FinishDateForMissings" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="FinishDateForMissings" class="form-control" />
+                    <span asp-validation-for="FinishDateForMissings" class="text-danger"></span>
+                </div>
             </div>
-        </div>
+            <div class="form-group">
+                <label asp-for="LastInspectionDate" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="LastInspectionDate" class="form-control" />
+                    <span asp-validation-for="LastInspectionDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="CertificationResultId" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <select asp-for="CertificationResultId" class="form-control" asp-items="ViewBag.CertificationResultId">
+                            <option value="">(Seçiniz)</option>
+                        </select>
+                        <span class="input-group-btn"><a class="btn btn-default" asp-controller="CertificationResults" asp-action="Index">...</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="QualityCertificateDate" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="QualityCertificateDate" class="form-control" />
+                    <span asp-validation-for="QualityCertificateDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="QualityCertificateEndDate" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="QualityCertificateEndDate" class="form-control" />
+                    <span asp-validation-for="QualityCertificateEndDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="CertificationInputsCompleteDate" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="CertificationInputsCompleteDate" class="form-control" />
+                    <span asp-validation-for="CertificationInputsCompleteDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="CertificationInputsUserId" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <select asp-for="CertificationInputsUserId" class="form-control" asp-items="ViewBag.CertificationInputsUserId">
+                            <option value="">(Seçiniz)</option>
+                        </select>
+                        <span class="input-group-btn"><a class="btn btn-default" asp-controller="ApplicationUsers" asp-action="Index">...</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="InspectorNotes" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="InspectorNotes" class="form-control" />
+                    <span asp-validation-for="InspectorNotes" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProposedBudget" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="ProposedBudget" class="form-control" />
+                    <span asp-validation-for="ProposedBudget" class="text-danger"></span>
+                </div>
+            </div>
         <div class="form-group">
             <label asp-for="InspectionFile" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="InspectionFile" class="form-control" />
-                <label class="btn btn-default btn-file">
-                    <input type="file" name="InspectionFileUpload" hidden>
+                <label class="btn-block btn-default btn-file">
+                    <input asp-for="InspectionFile" class="form-control" type="file" name="InspectionFileUpload" accept=".ppt,.pptx,.pptm,.doc,.docx,.pdf" />
                 </label>
-    <span asp-validation-for="InspectionFile" class="text-danger"></span>
-</div>
-        </div>
-        <div class="form-group">
-            <label asp-for="CreateDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="CreateDate" readonly class="form-control" />
-                <span asp-validation-for="CreateDate" class="text-danger"></span>
+                <span asp-validation-for="InspectionFile" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group">
-            <label asp-for="CreatedBy" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="CreatedBy" readonly class="form-control" />
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="CreateDate" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="CreateDate" readonly class="form-control" />
+                    <span asp-validation-for="CreateDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedBy" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="CreatedBy" readonly class="form-control" />
+                    <span asp-validation-for="CreatedBy" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdateDate" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="UpdateDate" readonly class="form-control" />
+                    <span asp-validation-for="UpdateDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedBy" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="UpdatedBy" readonly class="form-control" />
+                    <span asp-validation-for="UpdatedBy" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Oluştur" class="btn btn-default" />
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label asp-for="UpdateDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="UpdateDate" readonly class="form-control" />
-                <span asp-validation-for="UpdateDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="UpdatedBy" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="UpdatedBy" readonly class="form-control" />
-                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Oluştur" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
 </form>
 
 <div>

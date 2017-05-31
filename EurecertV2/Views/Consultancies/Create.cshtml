@@ -6,15 +6,19 @@
 
 <h2>Oluştur</h2>
 
-<form asp-action="Create">
+<form asp-action="Create" asp-controller="Consultancies" method="post" enctype="multipart/form-data">
     <div class="form-horizontal">
         <h4>Danışmanlık</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="CompanyId" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="CompanyId" class ="form-control" asp-items="ViewBag.CompanyId"></select>
+          <label asp-for="CompanyId" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <div class="input-group">
+                        <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
+                        <span class="input-group-btn"><a class="btn btn-default" asp-controller="Companies" asp-action="Index">...</a></span>
+                    </div>
+                <span asp-validation-for="CompanyId" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
@@ -27,7 +31,13 @@
         <div class="form-group">
             <label asp-for="ApplicationMethodId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="ApplicationMethodId" class ="form-control" asp-items="ViewBag.ApplicationMethodId"></select>
+                <div class="input-group">
+                    <select asp-for="ApplicationMethodId" class="form-control" asp-items="ViewBag.ApplicationMethodId">
+                        <option value="">(Seçiniz)</option>
+                    </select>
+                    <span class="input-group-btn"><a class="btn btn-default" asp-controller="ApplicationMethods" asp-action="Index">...</a></span>
+                   </div>
+                <span asp-validation-for="ApplicationMethodId" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
@@ -45,17 +55,32 @@
                 <span asp-validation-for="PresentationDate" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group">
+        @*<div class="form-group">
             <label asp-for="PresentationFile" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="PresentationFile" class="form-control" />
+                <span asp-validation-for="PresentationFile" class="text-danger"></span>
+            </div>
+        </div>*@
+        <div class="form-group">
+            <label asp-for="PresentationFile" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <label class="btn-block btn-default btn-file">
+                    <input asp-for="PresentationFile" class="form-control" type="file" name="presentationUpload" accept=".ppt,.pptx,.pptm,.doc,.docx,.pdf" />
+                </label>
                 <span asp-validation-for="PresentationFile" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="MarketingMethodId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="MarketingMethodId" class ="form-control" asp-items="ViewBag.MarketingMethodId"></select>
+                <div class="input-group">
+                <select asp-for="MarketingMethodId" class ="form-control" asp-items="ViewBag.MarketingMethodId">
+                    <option value="">(Seçiniz)</option>
+                </select>
+                <span class="input-group-btn"><a class="btn btn-default" asp-controller="MarketingMethods" asp-action="Index">...</a></span>
+                </div>
+                <span asp-validation-for="MarketingMethodId" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
@@ -103,7 +128,14 @@
         <div class="form-group">
             <label asp-for="ReportCreatedById" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="ReportCreatedById" class ="form-control" asp-items="ViewBag.ReportCreatedById"></select>
+                <div class="input-group">
+                    <select asp-for="ReportCreatedById" class="form-control" asp-items="ViewBag.ReportCreatedById">
+                        <option value="">(Seçiniz)</option>
+                    </select>
+                    <span class="input-group-btn"><a class="btn btn-default" asp-controller="ApplicationUsers" asp-action="Index">...</a></span>
+
+                </div>
+                <span asp-validation-for="ReportCreatedById" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
@@ -116,10 +148,22 @@
         <div class="form-group">
             <label asp-for="ConsultantNotes" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="ConsultantNotes" class="form-control" />
+                <textarea rows="6" asp-for="ConsultantNotes" class="form-control"></textarea>
                 <span asp-validation-for="ConsultantNotes" class="text-danger"></span>
             </div>
         </div>
+        <div class="form-group">
+            <label asp-for="ConsultancyServiceFields" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                @foreach (var serviceField in (IEnumerable<SelectListItem>)ViewBag.ServiceFields)
+                {
+                    <input type="checkbox" name="ServiceFields[]" value="@serviceField.Value" checked="@serviceField.Selected" /> @serviceField.Text
+                    <br />
+                }
+                <span asp-validation-for="ConsultancyServiceFields" class="text-danger"></span>
+            </div>
+        </div>
+       
         <div class="form-group">
             <label asp-for="CreateDate" class="col-md-2 control-label"></label>
             <div class="col-md-10">

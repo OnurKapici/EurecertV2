@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using EurecertV2.Data;
 using EurecertV2.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace EurecertV2.Controllers
 {
@@ -15,10 +18,13 @@ namespace EurecertV2.Controllers
     public class ConsultanciesController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public ConsultanciesController(ApplicationDbContext context)
+        private IHostingEnvironment env;
+        
+        
+        public ConsultanciesController(ApplicationDbContext context, IHostingEnvironment _env)
         {
-            _context = context;    
+            _context = context;
+            this.env = _env;
         }
 
         // GET: Consultancies
@@ -36,12 +42,15 @@ namespace EurecertV2.Controllers
                 return NotFound();
             }
 
+            var service = _context.ServiceFields.ToList();
             var consultancy = await _context.Consultancies
                 .Include(c => c.ApplicationMethod)
                 .Include(c => c.Company)
                 .Include(c => c.MarketingMethod)
                 .Include(c => c.ReportCreatedBy)
+                .Include(c => c.ConsultancyServiceFields)
                 .SingleOrDefaultAsync(m => m.Id == id);
+            ViewBag.ServiceFields = service;
             if (consultancy == null)
             {
                 return NotFound();
@@ -57,9 +66,13 @@ namespace EurecertV2.Controllers
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name");
             ViewData["MarketingMethodId"] = new SelectList(_context.MarketingMethods, "Id", "Name");
             ViewData["ReportCreatedById"] = new SelectList(_context.ApplicationUser, "Id", "FullName");
+            ViewData["ServiceFields"] = new MultiSelectList(_context.ServiceFields, "Id", "Name");
             var model = new Consultancy();
             model.CreatedBy = User.Identity.Name;
             model.UpdatedBy = User.Identity.Name;
+            model.UpdateDate = DateTime.Now;
+            model.CreateDate = DateTime.Now;
+
             return View(model);
         }
 
@@ -68,18 +81,44 @@ namespace EurecertV2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CompanyId,ReportCode,ApplicationMethodId,IsPresentationDone,PresentationDate,PresentationFile,MarketingMethodId,ProposedBudget,ProposalDate,CompanyRequests,ConsultancyStartDate,ConsultancyFinishDate,ReportCreateDate,ReportCreatedById,ReportSendDate,ConsultantNotes,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Consultancy consultancy)
+        public async Task<IActionResult> Create([Bind("Id,CompanyId,ReportCode,ApplicationMethodId,IsPresentationDone,PresentationDate,PresentationFile,MarketingMethodId,ProposedBudget,ProposalDate,CompanyRequests,ConsultancyStartDate,ConsultancyFinishDate,ReportCreateDate,ReportCreatedById,ReportSendDate,ConsultantNotes,CreateDate,CreatedBy,UpdateDate,UpdatedBy,ServiceFields")] Consultancy consultancy,IFormFile presentationUpload)
         {
+         
             if (ModelState.IsValid)
             {
+                
+                if(presentationUpload != null && presentationUpload.Length > 0)
+                {
+                    
+                    string presentationName = new Random().Next(9999).ToString() + presentationUpload.FileName;
+                    
+
+                    using (var stream = new FileStream(env.WebRootPath + "\\uploads\\presentationFiles\\" + presentationName, FileMode.Create))
+                    {
+                        presentationUpload.CopyTo(stream);
+                    }
+                    consultancy.PresentationFile = presentationName;
+                }
                 _context.Add(consultancy);
                 await _context.SaveChangesAsync();
+
+                consultancy.ConsultancyServiceFields.Clear();
+                if (consultancy.ServiceFields != null)
+                {
+                    foreach (var serviceField in consultancy.ServiceFields)
+                    {
+                        consultancy.ConsultancyServiceFields.Add(new ConsultancyServiceField() { ConsultancyId = consultancy.Id, ServiceFieldId = serviceField });
+                    }
+                }
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction("Index");
             }
             ViewData["ApplicationMethodId"] = new SelectList(_context.ApplicationMethods, "Id", "Name", consultancy.ApplicationMethodId);
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", consultancy.CompanyId);
             ViewData["MarketingMethodId"] = new SelectList(_context.MarketingMethods, "Id", "Name", consultancy.MarketingMethodId);
             ViewData["ReportCreatedById"] = new SelectList(_context.ApplicationUser, "Id", "FullName", consultancy.ReportCreatedById);
+            ViewData["ServiceFields"] = new MultiSelectList(_context.ServiceFields, "Id", "Name", consultancy.ServiceFields);
             return View(consultancy);
         }
 
@@ -91,7 +130,7 @@ namespace EurecertV2.Controllers
                 return NotFound();
             }
 
-            var consultancy = await _context.Consultancies.SingleOrDefaultAsync(m => m.Id == id);
+            var consultancy = await _context.Consultancies.Include("ConsultancyServiceFields").SingleOrDefaultAsync(m => m.Id == id);
             if (consultancy == null)
             {
                 return NotFound();
@@ -100,7 +139,9 @@ namespace EurecertV2.Controllers
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", consultancy.CompanyId);
             ViewData["MarketingMethodId"] = new SelectList(_context.MarketingMethods, "Id", "Name", consultancy.MarketingMethodId);
             ViewData["ReportCreatedById"] = new SelectList(_context.ApplicationUser, "Id", "FullName", consultancy.ReportCreatedById);
+            ViewData["ServiceFields"] = new MultiSelectList(_context.ServiceFields, "Id", "Name",consultancy.ConsultancyServiceFields.Select(c => c.ServiceFieldId).ToList());
             return View(consultancy);
+            
         }
 
         // POST: Consultancies/Edit/5
@@ -108,18 +149,45 @@ namespace EurecertV2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CompanyId,ReportCode,ApplicationMethodId,IsPresentationDone,PresentationDate,PresentationFile,MarketingMethodId,ProposedBudget,ProposalDate,CompanyRequests,ConsultancyStartDate,ConsultancyFinishDate,ReportCreateDate,ReportCreatedById,ReportSendDate,ConsultantNotes,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Consultancy consultancy)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CompanyId,ReportCode,ApplicationMethodId,IsPresentationDone,PresentationDate,PresentationFile,MarketingMethodId,ProposedBudget,ProposalDate,CompanyRequests,ConsultancyStartDate,ConsultancyFinishDate,ReportCreateDate,ReportCreatedById,ReportSendDate,ConsultantNotes,CreateDate,CreatedBy,UpdateDate,UpdatedBy,ServiceFields")] Consultancy consultancy,IFormFile presentationUpload)
         {
+            
             if (id != consultancy.Id)
             {
                 return NotFound();
             }
-
+         
+            
             if (ModelState.IsValid)
             {
+                
                 try
                 {
+                   
+                    if (presentationUpload != null && presentationUpload.Length > 0)
+                    {          
+                        string presentationName = new Random().Next(9999).ToString() + presentationUpload.FileName;
+                        using (var stream = new FileStream(env.WebRootPath + "\\uploads\\presentationFiles\\" + presentationName, FileMode.Create))
+                        {
+                            presentationUpload.CopyTo(stream);
+                        }
+                        consultancy.PresentationFile = presentationName;
+                    }
+                    
+                    _context.ConsultancyServiceFields.RemoveRange(_context.ConsultancyServiceFields.Where(w => w.ConsultancyId == id).ToList());
+                    _context.SaveChanges();
                     _context.Update(consultancy);
+                    _context.SaveChanges();
+                    if (consultancy.ServiceFields != null)
+                    {
+                        foreach (var serviceField in consultancy.ServiceFields)
+                        {
+                            consultancy.ConsultancyServiceFields.Add(new ConsultancyServiceField() { ConsultancyId = consultancy.Id, ServiceFieldId = serviceField });
+                        }
+                        
+                    }
+                    consultancy.UpdatedBy = User.Identity.Name;
+                    consultancy.UpdateDate = DateTime.Now;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -139,6 +207,7 @@ namespace EurecertV2.Controllers
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", consultancy.CompanyId);
             ViewData["MarketingMethodId"] = new SelectList(_context.MarketingMethods, "Id", "Name", consultancy.MarketingMethodId);
             ViewData["ReportCreatedById"] = new SelectList(_context.ApplicationUser, "Id", "FullName", consultancy.ReportCreatedById);
+            ViewData["ServiceFields"] = new MultiSelectList(_context.ServiceFields, "Id", "Name", consultancy.ServiceFields);
             return View(consultancy);
         }
 
@@ -169,10 +238,20 @@ namespace EurecertV2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var consultancy = await _context.Consultancies.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Consultancies.Remove(consultancy);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+            var consultancy = await _context.Consultancies.Include("ConsultancyServiceFields").Include("ConsultancyServiceFields.ServiceField").SingleOrDefaultAsync(m => m.Id == id);
+            try
+            {
+                consultancy.ConsultancyServiceFields.Clear();
+                _context.SaveChanges();
+                _context.Consultancies.Remove(consultancy);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("Delete", "Silme Ýþlemi Esnasýnda Hata Oluþtu.Bu Kayýdýn Baþka Kayýtlar Tarafýndan Kullanýlmadýðýndan Emin Olun !!");
+                return View(consultancy);
+            }
         }
 
         private bool ConsultancyExists(int id)

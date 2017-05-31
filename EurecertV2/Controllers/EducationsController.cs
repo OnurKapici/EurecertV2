@@ -60,6 +60,8 @@ namespace EurecertV2.Controllers
             var model = new Education();
             model.CreatedBy = User.Identity.Name;
             model.UpdatedBy = User.Identity.Name;
+            model.CreateDate = DateTime.Now;
+            model.UpdateDate = DateTime.Now;
             return View(model);
         }
 
@@ -119,6 +121,8 @@ namespace EurecertV2.Controllers
             {
                 try
                 {
+                    education.UpdateDate = DateTime.Now;
+                    education.UpdatedBy = User.Identity.Name;
                     _context.Update(education);
                     await _context.SaveChangesAsync();
                 }

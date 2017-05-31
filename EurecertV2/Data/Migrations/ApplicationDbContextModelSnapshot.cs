@@ -709,7 +709,8 @@ namespace EurecertV2.Data.Migrations
                 {
                     b.HasOne("EurecertV2.Models.Company", "Company")
                         .WithMany("CompanyServices")
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("EurecertV2.Models.Service", "Service")
                         .WithMany("CompanyServices")
@@ -739,7 +740,8 @@ namespace EurecertV2.Data.Migrations
                 {
                     b.HasOne("EurecertV2.Models.Consultancy", "Consultancy")
                         .WithMany("ConsultancyServiceFields")
-                        .HasForeignKey("ConsultancyId");
+                        .HasForeignKey("ConsultancyId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("EurecertV2.Models.ServiceField", "ServiceField")
                         .WithMany("ConsultancyServiceFields")

@@ -10,7 +10,7 @@ namespace EurecertV2.Models
     {
         public int Id { get; set; }
         [StringLength(200)]
-        [Required]
+        [Required(ErrorMessage = "Tanıtım yönetim alanı boş bırakılamaz.")]
         [Display(Name = "Tanıtım Yöntemi")]
         public string Name { get; set; }
     }
