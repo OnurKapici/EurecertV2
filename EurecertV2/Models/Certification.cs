@@ -20,12 +20,6 @@ namespace EurecertV2.Models
         [ForeignKey("CompanyId")]
         [Display(Name = "Kurum")]
         public virtual Company Company { get; set; }
-        [StringLength(200)]
-        [Display(Name = "Rapor Kodu")]
-        public string ReportCode { get; set; }
-        [StringLength(200)]
-        [Display(Name = "Künye Kodu")]
-        public string ImprintCode { get; set; }
         [Display(Name = "Yetkili Denetmen Kişi")]
         public string InspectorPersonId { get; set; }
         [ForeignKey("InspectorPersonId")]
@@ -44,43 +38,41 @@ namespace EurecertV2.Models
         [ForeignKey("ApplicationMethodId")]
         [Display(Name = "Başvuru Yöntemi")]
         public virtual ApplicationMethod ApplicationMethod { get; set; }
-        [Display(Name = "Tanıtım Yapıldı Mı?")]
-        public bool IsPresentationDone { get; set; }
-        [Display(Name = "Tanıtım Tarihi")]
-        [DataType(DataType.Date)]
-        public DateTime? PresentationDate { get; set; }
         [Display(Name = "İlk İletişim Tarihi")]
         [DataType(DataType.Date)]
         public DateTime? FirstContactDate { get; set; }
         [Display(Name = "İletişime Geçilen Kişi")]
-        public string FirstContactPersonId { get; set; }
-        [ForeignKey("FirstContactPersonId")]
-        [Display(Name = "İletişime Geçilen Kişi")]
-        public virtual ApplicationUser FirstContactPerson { get; set; }
+        [StringLength(200)]
+        public string FirstContactPerson { get; set; }
+        [Display(Name = "Sunum Yapıldı Mı?")]
+        public bool IsPresentationDone { get; set; }
+        [Display(Name = "Sunum Tarihi")]
+        [DataType(DataType.Date)]
+        public DateTime? PresentationDate { get; set; }
+        [Display(Name = "Sunumu Yapan Kişi")]
+        [StringLength(200)]
+        public string PresentationPerson { get; set; }
         [Display(Name = "Ön Denetim Tarihi")]
         [DataType(DataType.Date)]
         public DateTime? FirstInspectionDate { get; set; }
-        [Display(Name = "Onay Tarihi")]
-        [DataType(DataType.Date)]
-        public DateTime? ApproveDate { get; set; }
         [Display(Name = "Verilerin Almanya'ya Gönderildiği Tarih")]
         [DataType(DataType.Date)]
         public DateTime? DataSendDate { get; set; }
         [Display(Name = "Raporun Getirildiği Tarih")]
         [DataType(DataType.Date)]
         public DateTime? ReportReturnDate { get; set; }
-        [StringLength(200)]
-        [Display(Name = "Raporu Hazırlayan")]
-        public string ReportPreparedBy { get; set; }
-        [StringLength(200)]
-        [Display(Name = "Denetim Raporu")]
-        public string InspectionReport { get; set; }
         [Display(Name = "Raporun Kuruma Ulaşma Tarihi")]
         [DataType(DataType.Date)]
         public DateTime? ReportRecievedDateByCompany { get; set; }
-        [Display(Name = "Kurum Rapora Cevabı")]
+        [Display(Name = "Kurumun Rapora Cevabı")]
         [DataType(DataType.MultilineText)]
         public string CompanyAnswerToReport { get; set; }
+        [StringLength(200)]
+        [Display(Name = "Raporu Hazırlayan Kişi")]
+        public string ReportPreparedBy { get; set; }
+        [StringLength(200)]
+        [Display(Name = "Denetim Raporu Dosyası")]
+        public string InspectionReport { get; set; }
         [Display(Name = "Eksikliklere Başlama Tarihi")]
         [DataType(DataType.Date)]
         public DateTime? StartDateForMissings { get; set; }
@@ -95,7 +87,7 @@ namespace EurecertV2.Models
         [Display(Name = "Belgelendirme Sonucu")]
         [ForeignKey("CertificationResultId")]
         public virtual CertificationResult CertificationResult { get; set; }
-        [Display(Name = "Kalite Belgesi Verilme Tarihi")]
+        [Display(Name = "Kalite Belgesi Verilme/Başlangıç Tarihi")]
         [DataType(DataType.Date)]
         public DateTime? QualityCertificateDate { get; set; }
         [DataType(DataType.Date)]
@@ -114,8 +106,13 @@ namespace EurecertV2.Models
         public string InspectorNotes { get; set; }
         [Display(Name = "Teklif Edilen Bütçe")]
         public decimal? ProposedBudget { get; set; }
+        [Display(Name = "Teklif Edilen Bütçe Para Birimi")]
+        public Currency? ProposedBudgetCurrency { get; set; }
         [Display(Name = "Denetim Dosyası")]
         public string InspectionFile { get; set; }
+        [StringLength(200)]
+        [Display(Name = "Protokol")]
+        public string ProtocolFile { get; set; }
         [Display(Name = "Oluşturulma Tarihi")]
         public DateTime CreateDate { get; set; }
         [StringLength(200)]

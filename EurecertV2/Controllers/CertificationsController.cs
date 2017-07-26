@@ -8,19 +8,20 @@ using Microsoft.EntityFrameworkCore;
 using EurecertV2.Data;
 using EurecertV2.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
-using Microsoft.AspNetCore.Hosting;
 
 namespace EurecertV2.Controllers
 {
     [Authorize]
     public class CertificationsController : Controller
     {
+        
         private readonly ApplicationDbContext _context;
         private IHostingEnvironment env;
 
-        public CertificationsController(ApplicationDbContext context,IHostingEnvironment _env)
+        public CertificationsController(ApplicationDbContext context, IHostingEnvironment _env)
         {
             _context = context;
             env = _env;
@@ -29,7 +30,7 @@ namespace EurecertV2.Controllers
         // GET: Certifications
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Certifications.Include(c => c.ApplicationMethod).Include(c => c.CertificationInputsUser).Include(c => c.CertificationResult).Include(c => c.Company).Include(c => c.FirstContactPerson).Include(c => c.InspectorPerson).Include(c => c.MarketingMethod);
+            var applicationDbContext = _context.Certifications.Include(c => c.ApplicationMethod).Include(c => c.CertificationInputsUser).Include(c => c.CertificationResult).Include(c => c.Company).Include(c => c.InspectorPerson).Include(c => c.MarketingMethod);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -46,7 +47,6 @@ namespace EurecertV2.Controllers
                 .Include(c => c.CertificationInputsUser)
                 .Include(c => c.CertificationResult)
                 .Include(c => c.Company)
-                .Include(c => c.FirstContactPerson)
                 .Include(c => c.InspectorPerson)
                 .Include(c => c.MarketingMethod)
                 .SingleOrDefaultAsync(m => m.Id == id);
@@ -65,7 +65,6 @@ namespace EurecertV2.Controllers
             ViewData["CertificationInputsUserId"] = new SelectList(_context.ApplicationUser, "Id", "FullName");
             ViewData["CertificationResultId"] = new SelectList(_context.CertificationResults, "Id", "Name");
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name");
-            ViewData["FirstContactPersonId"] = new SelectList(_context.ApplicationUser, "Id", "FullName");
             ViewData["InspectorPersonId"] = new SelectList(_context.ApplicationUser, "Id", "FullName");
             ViewData["MarketingMethodId"] = new SelectList(_context.MarketingMethods, "Id", "Name");
             var model = new Certification();
@@ -79,10 +78,8 @@ namespace EurecertV2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CompanyId,ReportCode,ImprintCode,InspectorPersonId,InspectionDate,MarketingMethodId,ApplicationMethodId,IsPresentationDone,PresentationDate,FirstContactDate,FirstContactPersonId,FirstInspectionDate,ApproveDate,DataSendDate,ReportReturnDate,ReportPreparedBy,InspectionReport,ReportRecievedDateByCompany,CompanyAnswerToReport,StartDateForMissings,FinishDateForMissings,LastInspectionDate,CertificationResultId,QualityCertificateDate,QualityCertificateEndDate,CertificationInputsCompleteDate,CertificationInputsUserId,InspectorNotes,ProposedBudget,InspectionFile,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Certification certification, IFormFile InspectionReportUpload, IFormFile InspectionFileUpload)
+        public async Task<IActionResult> Create([Bind("Id,CompanyId,InspectorPersonId,InspectionDate,MarketingMethodId,ApplicationMethodId,FirstContactDate,FirstContactPerson,IsPresentationDone,PresentationDate,PresentationPerson,FirstInspectionDate,DataSendDate,ReportReturnDate,ReportRecievedDateByCompany,CompanyAnswerToReport,ReportPreparedBy,InspectionReport,StartDateForMissings,FinishDateForMissings,LastInspectionDate,CertificationResultId,QualityCertificateDate,QualityCertificateEndDate,CertificationInputsCompleteDate,CertificationInputsUserId,InspectorNotes,ProposedBudget,ProposedBudgetCurrency,InspectionFile,ProtocolFile,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Certification certification, IFormFile InspectionReportUpload, IFormFile InspectionFileUpload, IFormFile ProtocolFileUpload )
         {
-                      
-           
             if (ModelState.IsValid)
             {
 
@@ -111,7 +108,18 @@ namespace EurecertV2.Controllers
                     }
                     certification.InspectionFile = InspectionFileName;
                 }
+                if (ProtocolFileUpload != null && ProtocolFileUpload.Length > 0)
+                {
 
+                    string ProtocolFileName = new Random().Next(9999).ToString() + ProtocolFileUpload.FileName;
+
+
+                    using (var stream = new FileStream(env.WebRootPath + "\\uploads\\protocolFiles\\" + ProtocolFileName, FileMode.Create))
+                    {
+                        InspectionFileUpload.CopyTo(stream);
+                    }
+                    certification.ProtocolFile = ProtocolFileName;
+                }
                 _context.Add(certification);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -120,7 +128,6 @@ namespace EurecertV2.Controllers
             ViewData["CertificationInputsUserId"] = new SelectList(_context.ApplicationUser, "Id", "FullName", certification.CertificationInputsUserId);
             ViewData["CertificationResultId"] = new SelectList(_context.CertificationResults, "Id", "Name", certification.CertificationResultId);
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", certification.CompanyId);
-            ViewData["FirstContactPersonId"] = new SelectList(_context.ApplicationUser, "Id", "FullName", certification.FirstContactPersonId);
             ViewData["InspectorPersonId"] = new SelectList(_context.ApplicationUser, "Id", "FullName", certification.InspectorPersonId);
             ViewData["MarketingMethodId"] = new SelectList(_context.MarketingMethods, "Id", "Name", certification.MarketingMethodId);
             return View(certification);
@@ -143,7 +150,6 @@ namespace EurecertV2.Controllers
             ViewData["CertificationInputsUserId"] = new SelectList(_context.ApplicationUser, "Id", "FullName", certification.CertificationInputsUserId);
             ViewData["CertificationResultId"] = new SelectList(_context.CertificationResults, "Id", "Name", certification.CertificationResultId);
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", certification.CompanyId);
-            ViewData["FirstContactPersonId"] = new SelectList(_context.ApplicationUser, "Id", "FullName", certification.FirstContactPersonId);
             ViewData["InspectorPersonId"] = new SelectList(_context.ApplicationUser, "Id", "FullName", certification.InspectorPersonId);
             ViewData["MarketingMethodId"] = new SelectList(_context.MarketingMethods, "Id", "Name", certification.MarketingMethodId);
             return View(certification);
@@ -154,48 +160,56 @@ namespace EurecertV2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CompanyId,ReportCode,ImprintCode,InspectorPersonId,InspectionDate,MarketingMethodId,ApplicationMethodId,IsPresentationDone,PresentationDate,FirstContactDate,FirstContactPersonId,FirstInspectionDate,ApproveDate,DataSendDate,ReportReturnDate,ReportPreparedBy,InspectionReport,ReportRecievedDateByCompany,CompanyAnswerToReport,StartDateForMissings,FinishDateForMissings,LastInspectionDate,CertificationResultId,QualityCertificateDate,QualityCertificateEndDate,CertificationInputsCompleteDate,CertificationInputsUserId,InspectorNotes,ProposedBudget,InspectionFile,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Certification certification,IFormFile InspectionReportUpload, IFormFile InspectionFileUpload)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CompanyId,InspectorPersonId,InspectionDate,MarketingMethodId,ApplicationMethodId,FirstContactDate,FirstContactPerson,IsPresentationDone,PresentationDate,PresentationPerson,FirstInspectionDate,DataSendDate,ReportReturnDate,ReportRecievedDateByCompany,CompanyAnswerToReport,ReportPreparedBy,InspectionReport,StartDateForMissings,FinishDateForMissings,LastInspectionDate,CertificationResultId,QualityCertificateDate,QualityCertificateEndDate,CertificationInputsCompleteDate,CertificationInputsUserId,InspectorNotes,ProposedBudget,ProposedBudgetCurrency,InspectionFile,ProtocolFile,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Certification certification, IFormFile InspectionReportUpload, IFormFile InspectionFileUpload, IFormFile ProtocolFileUpload)
         {
             if (id != certification.Id)
             {
                 return NotFound();
             }
-           
+
             if (ModelState.IsValid)
             {
+                if (InspectionReportUpload != null && InspectionReportUpload.Length > 0)
+                {
+
+                    string InspectionReportName = new Random().Next(9999).ToString() + InspectionReportUpload.FileName;
+
+
+                    using (var stream = new FileStream(env.WebRootPath + "\\uploads\\inspectionReportFiles\\" + InspectionReportName, FileMode.Create))
+                    {
+                        InspectionReportUpload.CopyTo(stream);
+                    }
+                    certification.InspectionReport = InspectionReportName;
+                }
+
+                if (InspectionFileUpload != null && InspectionFileUpload.Length > 0)
+                {
+
+                    string InspectionFileName = new Random().Next(9999).ToString() + InspectionFileUpload.FileName;
+
+
+                    using (var stream = new FileStream(env.WebRootPath + "\\uploads\\inspectionFiles\\" + InspectionFileName, FileMode.Create))
+                    {
+                        InspectionFileUpload.CopyTo(stream);
+                    }
+                    certification.InspectionFile = InspectionFileName;
+                }
+                if (ProtocolFileUpload != null && ProtocolFileUpload.Length > 0)
+                {
+
+                    string ProtocolFileName = new Random().Next(9999).ToString() + ProtocolFileUpload.FileName;
+
+
+                    using (var stream = new FileStream(env.WebRootPath + "\\uploads\\protocolFiles\\" + ProtocolFileName, FileMode.Create))
+                    {
+                        InspectionFileUpload.CopyTo(stream);
+                    }
+                    certification.ProtocolFile = ProtocolFileName;
+                }
                 try
                 {
-                   
-                  
-
-                    if (InspectionReportUpload != null && InspectionReportUpload.Length > 0)
-                    {
-
-                        string InspectionReportName = new Random().Next(9999).ToString() + InspectionReportUpload.FileName;
-
-
-                        using (var stream = new FileStream(env.WebRootPath + "\\uploads\\inspectionReportFiles\\" + InspectionReportName, FileMode.Create))
-                            {
-                                InspectionReportUpload.CopyTo(stream);
-                            }
-                        certification.InspectionReport = InspectionReportName;
-                    }
-
-                    if (InspectionFileUpload != null && InspectionFileUpload.Length > 0)
-                    {
-
-                        string InspectionFileName = new Random().Next(9999).ToString() + InspectionFileUpload.FileName;
-
-
-                        using (var stream = new FileStream(env.WebRootPath + "\\uploads\\inspectionFiles\\" + InspectionFileUpload, FileMode.Create))
-                        {
-                            InspectionFileUpload.CopyTo(stream);
-                        }
-                        certification.InspectionFile = InspectionFileName;
-                    }
                     _context.Update(certification);
                     await _context.SaveChangesAsync();
-                    
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -214,7 +228,6 @@ namespace EurecertV2.Controllers
             ViewData["CertificationInputsUserId"] = new SelectList(_context.ApplicationUser, "Id", "FullName", certification.CertificationInputsUserId);
             ViewData["CertificationResultId"] = new SelectList(_context.CertificationResults, "Id", "Name", certification.CertificationResultId);
             ViewData["CompanyId"] = new SelectList(_context.Companies, "Id", "Name", certification.CompanyId);
-            ViewData["FirstContactPersonId"] = new SelectList(_context.ApplicationUser, "Id", "FullName", certification.FirstContactPersonId);
             ViewData["InspectorPersonId"] = new SelectList(_context.ApplicationUser, "Id", "FullName", certification.InspectorPersonId);
             ViewData["MarketingMethodId"] = new SelectList(_context.MarketingMethods, "Id", "Name", certification.MarketingMethodId);
             return View(certification);
@@ -233,7 +246,6 @@ namespace EurecertV2.Controllers
                 .Include(c => c.CertificationInputsUser)
                 .Include(c => c.CertificationResult)
                 .Include(c => c.Company)
-                .Include(c => c.FirstContactPerson)
                 .Include(c => c.InspectorPerson)
                 .Include(c => c.MarketingMethod)
                 .SingleOrDefaultAsync(m => m.Id == id);
@@ -253,14 +265,13 @@ namespace EurecertV2.Controllers
             var certification = await _context.Certifications.SingleOrDefaultAsync(m => m.Id == id);
             try
             {
-                
                 _context.Certifications.Remove(certification);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("Delete", "Silme Ýþlemi Esnasýnda Hata Oluþtu.Bu Kayýdýn Baþka Kayýtlar Tarafýndan Kullanýlmadýðýndan Emin Olun !!");
+                ModelState.AddModelError("Delete", "Silme Ýþlemi Esnasýnda Hata Oluþtu. Bu Kayýdýn Baþka Kayýtlar Tarafýndan Kullanýlmadýðýndan Emin Olun !!");
                 return View(certification);
             }
         }

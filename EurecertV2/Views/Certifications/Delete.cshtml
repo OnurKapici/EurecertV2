@@ -5,31 +5,31 @@
 }
 
 <h2>Sil</h2>
-@Html.ValidationMessage("Delete", new { @class = "text-danger" })
+
 <h3>Silmek istediğinize emin misiniz?</h3>
 <div>
     <h4>Belgelendirme</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <form asp-action="Delete">
+    <form asp-action="Delete">
+        <dl class="dl-horizontal">
             <input type="hidden" asp-for="Id" />
-            <dt>
-                @Html.DisplayNameFor(model => model.ReportCode)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.ReportCode)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.ImprintCode)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.ImprintCode)
-            </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.InspectionDate)
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.InspectionDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstContactDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstContactDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstContactPerson)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstContactPerson)
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.IsPresentationDone)
@@ -44,22 +44,16 @@
                 @Html.DisplayFor(model => model.PresentationDate)
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.FirstContactDate)
+                @Html.DisplayNameFor(model => model.PresentationPerson)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.FirstContactDate)
+                @Html.DisplayFor(model => model.PresentationPerson)
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.FirstInspectionDate)
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.FirstInspectionDate)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.ApproveDate)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.ApproveDate)
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.DataSendDate)
@@ -74,18 +68,6 @@
                 @Html.DisplayFor(model => model.ReportReturnDate)
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.ReportPreparedBy)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.ReportPreparedBy)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.InspectionReport)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.InspectionReport)
-            </dd>
-            <dt>
                 @Html.DisplayNameFor(model => model.ReportRecievedDateByCompany)
             </dt>
             <dd>
@@ -96,6 +78,18 @@
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.CompanyAnswerToReport)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ReportPreparedBy)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ReportPreparedBy)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.InspectionReport)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.InspectionReport)
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.StartDateForMissings)
@@ -146,10 +140,22 @@
                 @Html.DisplayFor(model => model.ProposedBudget)
             </dd>
             <dt>
+                @Html.DisplayNameFor(model => model.ProposedBudgetCurrency)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProposedBudgetCurrency)
+            </dd>
+            <dt>
                 @Html.DisplayNameFor(model => model.InspectionFile)
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.InspectionFile)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProtocolFile)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProtocolFile)
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.CreateDate)
@@ -200,12 +206,6 @@
                 @Html.DisplayFor(model => model.Company.Name)
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.FirstContactPerson)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.FirstContactPerson.Id)
-            </dd>
-            <dt>
                 @Html.DisplayNameFor(model => model.InspectorPerson)
             </dt>
             <dd>
@@ -217,9 +217,9 @@
             <dd>
                 @Html.DisplayFor(model => model.MarketingMethod.Name)
             </dd>
-</dl>
-    
-    
+        </dl>
+
+
         <div class="form-actions no-color">
             <input type="submit" value="Sil" class="btn btn-default" /> |
             <a asp-action="Index">Listeye Geri Dön</a>

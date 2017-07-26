@@ -12,14 +12,26 @@
 <table id="tblRecords" class="table table-striped table-hover">
     <thead>
         <tr>
-                <th class="text-nowrap">
-                    @Html.DisplayNameFor(model => model.ReportCode)
-                </th>
-                <th class="text-nowrap">
-                    @Html.DisplayNameFor(model => model.ImprintCode)
-                </th>
+            <th class="text-nowrap all">
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.InspectorPerson)
+            </th>
                 <th class="text-nowrap">
                     @Html.DisplayNameFor(model => model.InspectionDate)
+                </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.MarketingMethod)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.ApplicationMethod)
+            </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.FirstContactDate)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.FirstContactPerson)
                 </th>
                 <th class="text-nowrap">
                     @Html.DisplayNameFor(model => model.IsPresentationDone)
@@ -28,13 +40,10 @@
                     @Html.DisplayNameFor(model => model.PresentationDate)
                 </th>
                 <th class="text-nowrap">
-                    @Html.DisplayNameFor(model => model.FirstContactDate)
+                    @Html.DisplayNameFor(model => model.PresentationPerson)
                 </th>
                 <th class="text-nowrap">
                     @Html.DisplayNameFor(model => model.FirstInspectionDate)
-                </th>
-                <th class="text-nowrap">
-                    @Html.DisplayNameFor(model => model.ApproveDate)
                 </th>
                 <th class="text-nowrap">
                     @Html.DisplayNameFor(model => model.DataSendDate)
@@ -43,16 +52,16 @@
                     @Html.DisplayNameFor(model => model.ReportReturnDate)
                 </th>
                 <th class="text-nowrap">
-                    @Html.DisplayNameFor(model => model.ReportPreparedBy)
-                </th>
-                <th class="text-nowrap">
-                    @Html.DisplayNameFor(model => model.InspectionReport)
-                </th>
-                <th class="text-nowrap">
                     @Html.DisplayNameFor(model => model.ReportRecievedDateByCompany)
                 </th>
                 <th class="text-nowrap">
                     @Html.DisplayNameFor(model => model.CompanyAnswerToReport)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ReportPreparedBy)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.InspectionReport)
                 </th>
                 <th class="text-nowrap">
                     @Html.DisplayNameFor(model => model.StartDateForMissings)
@@ -79,7 +88,13 @@
                     @Html.DisplayNameFor(model => model.ProposedBudget)
                 </th>
                 <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ProposedBudgetCurrency)
+                </th>
+                <th class="text-nowrap">
                     @Html.DisplayNameFor(model => model.InspectionFile)
+                </th>
+                <th class="text-nowrap">
+                    @Html.DisplayNameFor(model => model.ProtocolFile)
                 </th>
                 <th class="text-nowrap">
                     @Html.DisplayNameFor(model => model.CreateDate)
@@ -93,41 +108,41 @@
                 <th class="text-nowrap">
                     @Html.DisplayNameFor(model => model.UpdatedBy)
                 </th>
-            <th class="text-nowrap">
-                @Html.DisplayNameFor(model => model.ApplicationMethod)
-            </th>
+            
             <th class="text-nowrap">
                 @Html.DisplayNameFor(model => model.CertificationInputsUser)
             </th>
             <th class="text-nowrap">
                 @Html.DisplayNameFor(model => model.CertificationResult)
             </th>
-            <th class="text-nowrap">
-                @Html.DisplayNameFor(model => model.Company)
-            </th>
-            <th class="text-nowrap">
-                @Html.DisplayNameFor(model => model.FirstContactPerson)
-            </th>
-            <th class="text-nowrap">
-                @Html.DisplayNameFor(model => model.InspectorPerson)
-            </th>
-            <th class="text-nowrap">
-                @Html.DisplayNameFor(model => model.MarketingMethod)
-            </th>
-            <th data-orderable="false" class="all">Eylemler</th>
+            
+            
+            <th class="text-nowrap all">Eylemler</th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ReportCode)
+                @Html.DisplayFor(modelItem => item.Company.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImprintCode)
+                @Html.DisplayFor(modelItem => item.InspectorPerson.FullName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.InspectionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MarketingMethod.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationMethod.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstContactDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstContactPerson)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsPresentationDone)
@@ -136,13 +151,10 @@
                 @Html.DisplayFor(modelItem => item.PresentationDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstContactDate)
+                @Html.DisplayFor(modelItem => item.PresentationPerson)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstInspectionDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApproveDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DataSendDate)
@@ -151,16 +163,16 @@
                 @Html.DisplayFor(modelItem => item.ReportReturnDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ReportPreparedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InspectionReport)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.ReportRecievedDateByCompany)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CompanyAnswerToReport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportPreparedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InspectionReport)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StartDateForMissings)
@@ -187,7 +199,13 @@
                 @Html.DisplayFor(modelItem => item.ProposedBudget)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.ProposedBudgetCurrency)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.InspectionFile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProtocolFile)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreateDate)
@@ -201,27 +219,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.UpdatedBy)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApplicationMethod.Name)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.CertificationInputsUser.FullName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CertificationResult.Name)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Company.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstContactPerson.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InspectorPerson.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MarketingMethod.Name)
-            </td>
+            
+            
+            
             <td class="text-nowrap">
                 <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Ayrıntılar</a> |
