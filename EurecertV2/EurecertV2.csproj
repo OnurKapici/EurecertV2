@@ -3521,6 +3521,7 @@
     <Folder Include="wwwroot\uploads\protocolFiles\" />
     <Folder Include="wwwroot\uploads\proposalFiles\" />
     <Folder Include="wwwroot\uploads\presentationFiles\" />
+    <Folder Include="wwwroot\uploads\protocolFiles\" />
   </ItemGroup>
 
 </Project>

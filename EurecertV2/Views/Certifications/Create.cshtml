@@ -6,7 +6,7 @@
 
 <h2>Oluştur</h2>
 
-<form asp-action="Create">
+<form asp-action="Create" enctype="multipart/form-data">
     <div class="form-horizontal">
         <h4>Belgelendirme</h4>
         <hr />
@@ -14,13 +14,13 @@
         <div class="form-group">
             <label asp-for="CompanyId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="CompanyId" class ="form-control" asp-items="ViewBag.CompanyId"></select>
+                <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="InspectorPersonId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="InspectorPersonId" class ="form-control" asp-items="ViewBag.InspectorPersonId"></select>
+                <select asp-for="InspectorPersonId" class="form-control" asp-items="ViewBag.InspectorPersonId"></select>
             </div>
         </div>
         <div class="form-group">
@@ -33,13 +33,13 @@
         <div class="form-group">
             <label asp-for="MarketingMethodId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="MarketingMethodId" class ="form-control" asp-items="ViewBag.MarketingMethodId"></select>
+                <select asp-for="MarketingMethodId" class="form-control" asp-items="ViewBag.MarketingMethodId"></select>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="ApplicationMethodId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="ApplicationMethodId" class ="form-control" asp-items="ViewBag.ApplicationMethodId"></select>
+                <select asp-for="ApplicationMethodId" class="form-control" asp-items="ViewBag.ApplicationMethodId"></select>
             </div>
         </div>
         <div class="form-group">
@@ -123,7 +123,7 @@
         <div class="form-group">
             <label asp-for="InspectionReport" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="InspectionReport" class="form-control" />
+                <input title="InspectionReportUpload" type="file" name="InspectionReportUpload" class="form-control"/>
                 <span asp-validation-for="InspectionReport" class="text-danger"></span>
             </div>
         </div>
@@ -151,7 +151,7 @@
         <div class="form-group">
             <label asp-for="CertificationResultId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="CertificationResultId" class ="form-control" asp-items="ViewBag.CertificationResultId"></select>
+                <select asp-for="CertificationResultId" class="form-control" asp-items="ViewBag.CertificationResultId"></select>
             </div>
         </div>
         <div class="form-group">
@@ -178,7 +178,7 @@
         <div class="form-group">
             <label asp-for="CertificationInputsUserId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="CertificationInputsUserId" class ="form-control" asp-items="ViewBag.CertificationInputsUserId"></select>
+                <select asp-for="CertificationInputsUserId" class="form-control" asp-items="ViewBag.CertificationInputsUserId"></select>
             </div>
         </div>
         <div class="form-group">
@@ -205,45 +205,26 @@
         <div class="form-group">
             <label asp-for="InspectionFile" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="InspectionFile" class="form-control" />
+                <input title="InspectionFileUpload" type="file" name="InspectionFileUpload" class="form-control" />
                 <span asp-validation-for="InspectionFile" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="ProtocolFile" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="ProtocolFile" class="form-control" />
+                <input title="ProtocolFileUpload" type="file" name="ProtocolFileUpload" class="form-control" />
                 <span asp-validation-for="ProtocolFile" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group">
-            <label asp-for="CreateDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="CreateDate" class="form-control" />
-                <span asp-validation-for="CreateDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="CreatedBy" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="CreatedBy" class="form-control" />
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="UpdateDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="UpdateDate" class="form-control" />
-                <span asp-validation-for="UpdateDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="UpdatedBy" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="UpdatedBy" class="form-control" />
-                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
-            </div>
-        </div>
+
+        <input asp-for="CreateDate" class="form-control" type="hidden" />
+
+        <input asp-for="CreatedBy" class="form-control" type="hidden" />
+
+        <input asp-for="UpdateDate" class="form-control" type="hidden" />
+
+        <input asp-for="UpdatedBy" class="form-control" type="hidden" />
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Oluştur" class="btn btn-default" />

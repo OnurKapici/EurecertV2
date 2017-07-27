@@ -78,7 +78,7 @@ namespace EurecertV2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CompanyId,InspectorPersonId,InspectionDate,MarketingMethodId,ApplicationMethodId,FirstContactDate,FirstContactPerson,IsPresentationDone,PresentationDate,PresentationPerson,FirstInspectionDate,DataSendDate,ReportReturnDate,ReportRecievedDateByCompany,CompanyAnswerToReport,ReportPreparedBy,InspectionReport,StartDateForMissings,FinishDateForMissings,LastInspectionDate,CertificationResultId,QualityCertificateDate,QualityCertificateEndDate,CertificationInputsCompleteDate,CertificationInputsUserId,InspectorNotes,ProposedBudget,ProposedBudgetCurrency,InspectionFile,ProtocolFile,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] Certification certification, IFormFile InspectionReportUpload, IFormFile InspectionFileUpload, IFormFile ProtocolFileUpload )
+        public async Task<IActionResult> Create( Certification certification, IFormFile InspectionReportUpload, IFormFile InspectionFileUpload, IFormFile ProtocolFileUpload )
         {
             if (ModelState.IsValid)
             {
