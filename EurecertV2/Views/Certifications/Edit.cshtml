@@ -205,7 +205,8 @@
         <div class="form-group">
             <label asp-for="ProposedBudget" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="ProposedBudget" class="form-control" />
+                <input asp-for="ProposedBudget" class="form-control" value="@String.Format(System.Globalization.CultureInfo.InvariantCulture, 
+                                      "{0:00.00}", Model.ProposedBudget)"/>
                 <span asp-validation-for="ProposedBudget" class="text-danger"></span>
             </div>
         </div>
