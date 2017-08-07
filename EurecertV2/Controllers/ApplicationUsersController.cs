@@ -88,7 +88,7 @@ namespace EurecertV2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("FullName,Phone,Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] ApplicationUser applicationUser)
+        public async Task<IActionResult> Edit(string id, [Bind("FullName,Phone,Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] ApplicationUser applicationUser)
         {
             if (id != applicationUser.Id)
             {
@@ -99,7 +99,9 @@ namespace EurecertV2.Controllers
             {
                 try
                 {
-                    _context.Update(applicationUser);
+                    var u = _context.ApplicationUser.FirstOrDefault(f => f.UserName == applicationUser.UserName);
+                    u.FullName = applicationUser.FullName;
+                    u.Phone = applicationUser.Phone;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
