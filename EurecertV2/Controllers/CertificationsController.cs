@@ -169,6 +169,7 @@ namespace EurecertV2.Controllers
 
             if (ModelState.IsValid)
             {
+
                 if (InspectionReportUpload != null && InspectionReportUpload.Length > 0)
                 {
 
@@ -202,26 +203,12 @@ namespace EurecertV2.Controllers
 
                     using (var stream = new FileStream(env.WebRootPath + "\\uploads\\protocolFiles\\" + ProtocolFileName, FileMode.Create))
                     {
-                        InspectionFileUpload.CopyTo(stream);
+                        ProtocolFileUpload.CopyTo(stream);
                     }
                     certification.ProtocolFile = ProtocolFileName;
                 }
-                try
-                {
-                    _context.Update(certification);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CertificationExists(certification.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                _context.Update(certification);
+                await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewData["ApplicationMethodId"] = new SelectList(_context.ApplicationMethods, "Id", "Name", certification.ApplicationMethodId);

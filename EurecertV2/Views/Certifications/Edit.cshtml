@@ -6,7 +6,7 @@
 
 <h2>Düzenle</h2>
 
-<form asp-action="Edit">
+<form asp-action="Edit" enctype="multipart/form-data">
     <div class="form-horizontal">
         <h4>Belgelendirme</h4>
         <hr />
@@ -125,13 +125,20 @@
                 <span asp-validation-for="ReportPreparedBy" class="text-danger"></span>
             </div>
         </div>
+
+
+
+       
         <div class="form-group">
             <label asp-for="InspectionReport" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="InspectionReport" class="form-control" />
+                <input asp-for="InspectionReport" class="form-control" readonly/>
+                <input title="InspectionReportUpload" type="file" name="InspectionReportUpload" class="form-control" />
                 <span asp-validation-for="InspectionReport" class="text-danger"></span>
             </div>
         </div>
+
+
         <div class="form-group">
             <label asp-for="StartDateForMissings" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -212,42 +219,44 @@
         <div class="form-group">
             <label asp-for="InspectionFile" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="InspectionFile" class="form-control" />
+                <input asp-for="InspectionFile" class="form-control" readonly />
+                <input title="InspectionFileUpload" type="file" name="InspectionFileUpload" class="form-control" />
                 <span asp-validation-for="InspectionFile" class="text-danger"></span>
             </div>
-        </div>
+        </div>      
         <div class="form-group">
             <label asp-for="ProtocolFile" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="ProtocolFile" class="form-control" />
+                <input asp-for="ProtocolFile" class="form-control" readonly/>
+                <input title="ProtocolFileUpload" type="file" name="ProtocolFileUpload" class="form-control" />
                 <span asp-validation-for="ProtocolFile" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="CreateDate" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="CreateDate" class="form-control" />
+                <input asp-for="CreateDate" class="form-control" readonly/>
                 <span asp-validation-for="CreateDate" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="CreatedBy" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="CreatedBy" class="form-control" />
+                <input asp-for="CreatedBy" class="form-control" readonly/>
                 <span asp-validation-for="CreatedBy" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="UpdateDate" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="UpdateDate" class="form-control" />
+                <input asp-for="UpdateDate" class="form-control" readonly/>
                 <span asp-validation-for="UpdateDate" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="UpdatedBy" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="UpdatedBy" class="form-control" />
+                <input asp-for="UpdatedBy" class="form-control" readonly/>
                 <span asp-validation-for="UpdatedBy" class="text-danger"></span>
             </div>
         </div>
